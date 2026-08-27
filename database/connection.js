@@ -5,16 +5,22 @@ let mongoMemoryServer = null;
 
 export const connectDB = async () => {
   try {
-    const mongoUri = process.env.MONGODB_URI;
+    // Support both MONGO_URI and MONGODB_URI
+    const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
 
     if (mongoUri) {
-      console.log(`📡 Connecting to MongoDB instance: ${mongoUri.split('@')[1] || mongoUri}`);
-      await mongoose.connect(mongoUri);
-      console.log('✅ External MongoDB connected successfully.');
+      console.log(`📡 Connecting to MongoDB Atlas / Cloud instance: ${mongoUri.split('@')[1] || 'authenticated connection'}`);
+      await mongoose.connect(mongoUri, {
+        maxPoolSize: 20,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+        family: 4 // IPv4 preference
+      });
+      console.log('✅ MongoDB connected successfully to Atlas / Cloud.');
       return;
     }
 
-    console.log('⚡ Initializing embedded MongoMemoryServer for instant zero-config run...');
+    console.log('⚡ No MONGO_URI/MONGODB_URI provided. Initializing embedded MongoMemoryServer for instant zero-config run...');
     mongoMemoryServer = await MongoMemoryServer.create();
     const uri = mongoMemoryServer.getUri();
     await mongoose.connect(uri);

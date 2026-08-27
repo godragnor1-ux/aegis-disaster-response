@@ -48,13 +48,25 @@ app.use((req, res, next) => {
   next();
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({
+// Health check endpoints (supports both /health and /api/health for Render)
+const healthHandler = (req, res) => {
+  res.status(200).json({
     status: 'ONLINE',
-    service: 'ResQ-Command Real-Time Platform',
-    architecture: 'Clean Modular Architecture (/backend, /frontend, /ai, /services, /database, /components, /utils)',
+    service: 'ResQ-Command Real-Time Disaster Response Backend',
+    port: PORT,
+    environment: process.env.NODE_ENV || 'development',
+    database: process.env.MONGO_URI || process.env.MONGODB_URI ? 'MongoDB Atlas (Connected)' : 'Embedded Memory DB',
     timestamp: new Date().toISOString()
+  });
+};
+
+app.get('/health', healthHandler);
+app.get('/api/health', healthHandler);
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: '⚡ AEGIS-PULSE (ResQ-Command) Backend API is running.',
+    health: '/health',
+    apiDocs: '/api'
   });
 });
 
