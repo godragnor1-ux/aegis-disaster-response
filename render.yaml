@@ -4,18 +4,20 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: npm install && npm install --prefix backend
+    buildCommand: npm install
     startCommand: node backend/server.js
-    healthCheckPath: /api/health
+    healthCheckPath: /health
     autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
+      - key: MONGO_URI
+        sync: false
       - key: MONGODB_URI
-        sync: false # Set in Render Dashboard with your MongoDB Atlas connection string
+        sync: false
       - key: JWT_SECRET
-        generateValue: true # Render will generate a cryptographically secure 256-bit secret
+        generateValue: true
       - key: CLIENT_ORIGIN
-        sync: false # Set in Render Dashboard with your Vercel URL (e.g. https://resq-command.vercel.app)
+        sync: false

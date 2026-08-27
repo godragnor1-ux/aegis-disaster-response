@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongoMemoryServer = null;
 
@@ -67,16 +66,19 @@ export const connectDB = async (retries = 3, delayMs = 3000) => {
     }
   }
 
-  // Fallback to Embedded MongoMemoryServer for instant offline zero-config development
+  // Fallback to Embedded MongoMemoryServer if available
   try {
     console.log('⚡ Initializing embedded MongoMemoryServer for instant zero-config run...');
+    const { MongoMemoryServer } = await import('mongodb-memory-server');
     mongoMemoryServer = await MongoMemoryServer.create();
     const uri = mongoMemoryServer.getUri();
     await mongoose.connect(uri);
     console.log(`✅ [MongoMemoryServer] Connected successfully at: ${uri}`);
   } catch (memError) {
-    console.error('❌ Fatal error initializing embedded database:', memError.message);
-    process.exit(1);
+    console.warn('⚠️ Embedded database initialization skipped or module not installed:', memError.message);
+    if (!mongoUri) {
+      console.error('❌ Please set MONGO_URI environment variable in your deployment dashboard.');
+    }
   }
 };
 

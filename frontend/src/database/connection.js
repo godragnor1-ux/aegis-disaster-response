@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongoMemoryServer = null;
 
-/**
- * Mask password from MongoDB connection string for safe logging
- */
 const sanitizeMongoUri = (uri) => {
   if (!uri) return 'undefined';
   try {
@@ -15,7 +11,6 @@ const sanitizeMongoUri = (uri) => {
   }
 };
 
-// Mongoose Connection Event Listeners
 mongoose.connection.on('connected', () => {
   console.log('🟢 [MongoDB Event] Connection established and active.');
 });
@@ -32,9 +27,6 @@ mongoose.connection.on('reconnected', () => {
   console.log('🟢 [MongoDB Event] Successfully reconnected to MongoDB.');
 });
 
-/**
- * Connect to MongoDB Atlas or embedded fallback with retry logic
- */
 export const connectDB = async (retries = 3, delayMs = 3000) => {
   const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
 
@@ -47,7 +39,7 @@ export const connectDB = async (retries = 3, delayMs = 3000) => {
           maxPoolSize: 20,
           serverSelectionTimeoutMS: 8000,
           socketTimeoutMS: 45000,
-          family: 4, // Force IPv4 to prevent IPv6 timeout issues on cloud hosts
+          family: 4,
         });
 
         console.log('✅ [MongoDB Atlas] Connected successfully to Cloud Database.');
@@ -67,16 +59,18 @@ export const connectDB = async (retries = 3, delayMs = 3000) => {
     }
   }
 
-  // Fallback to Embedded MongoMemoryServer for instant offline zero-config development
   try {
     console.log('⚡ Initializing embedded MongoMemoryServer for instant zero-config run...');
+    const { MongoMemoryServer } = await import('mongodb-memory-server');
     mongoMemoryServer = await MongoMemoryServer.create();
     const uri = mongoMemoryServer.getUri();
     await mongoose.connect(uri);
     console.log(`✅ [MongoMemoryServer] Connected successfully at: ${uri}`);
   } catch (memError) {
-    console.error('❌ Fatal error initializing embedded database:', memError.message);
-    process.exit(1);
+    console.warn('⚠️ Embedded database initialization skipped or module not installed:', memError.message);
+    if (!mongoUri) {
+      console.error('❌ Please set MONGO_URI environment variable in your deployment dashboard.');
+    }
   }
 };
 
