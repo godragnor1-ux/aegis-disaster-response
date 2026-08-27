@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./frontend/src/*", "./src/*"],
+      "@components/*": [
+        "./frontend/src/components/*",
+        "./components/*",
+        "src/components/*"
+      ],
+      "@utils/*": [
+        "./frontend/src/utils/*",
+        "./utils/*",
+        "src/utils/*"
+      ],
+      "@ai/*": ["./ai/*", "./frontend/src/ai/*"],
+      "@services/*": ["./services/*", "./frontend/src/services/*"],
+      "@database/*": ["./database/*", "./frontend/src/database/*"]
+    }
+  },
+  "include": [
+    "frontend/next-env.d.ts",
+    "frontend/**/*.ts",
+    "frontend/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
+}
