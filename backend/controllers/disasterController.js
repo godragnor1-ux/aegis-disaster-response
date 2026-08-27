@@ -204,7 +204,10 @@ export const sendChatMessage = async (req, res) => {
   try {
     const msg = new ChatMessage(req.body);
     await msg.save();
-    req.io?.to(msg.channel).emit('chat:new_message', msg);
+    req.io?.emit('chat:new_message', msg);
+    if (msg.channel) {
+      req.io?.to(msg.channel).emit('chat:new_message', msg);
+    }
     res.status(201).json({ success: true, message: msg });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
