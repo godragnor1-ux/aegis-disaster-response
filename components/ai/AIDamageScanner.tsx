@@ -42,7 +42,7 @@ export const AIDamageScanner: React.FC = () => {
   const [analysisResult, setAnalysisResult] = useState<DamageAnalysisResult | null>(null);
   const [showBoxes, setShowBoxes] = useState(true);
 
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   const handleRunAnalysis = async (imgUrl: string, type: string) => {
     setIsAnalyzing(true);

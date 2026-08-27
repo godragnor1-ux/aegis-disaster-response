@@ -19,7 +19,7 @@ export const SafeZonesView: React.FC = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [checkinCount, setCheckinCount] = useState(1);
 
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   const handleCheckin = async (shelter: Shelter) => {
     setIsUpdating(true);

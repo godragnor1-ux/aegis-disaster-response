@@ -10,7 +10,7 @@ export const RealtimeActivityHUD: React.FC = () => {
   const { sosBeacons, responders } = useEmergency();
   const [latencyMs, setLatencyMs] = useState<number>(24);
   const [recentEvents, setRecentEvents] = useState<string[]>([
-    '⚡ WebSocket Gateway Connected: ws://localhost:5001',
+    '⚡ Live WebSocket Gateway Stream Active (Encrypted TLS)',
     '🛰️ GPS Fleet Telemetry Stream Active (5 Units)',
     '🚨 SOS Beacon Monitoring Online (DEFCON 1)'
   ]);

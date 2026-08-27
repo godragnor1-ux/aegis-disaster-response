@@ -33,7 +33,7 @@ export const DynamicRoutingView: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [routeResult, setRouteResult] = useState<SafeRouteResult | null>(null);
 
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   const locationPresets: Record<string, { name: string; coords: [number, number] }> = {
     'SOS-2026-8812': { name: 'Trapped Family (Sector 4 Flood Balcony)', coords: [28.6185, 77.2115] },

@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
+import { getSocketUrl } from '../utils/apiConfig';
+
 interface SocketContextType {
   socket: Socket | null;
   isConnected: boolean;
@@ -23,7 +25,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [activeChannel, setActiveChannel] = useState('citizen_public');
 
   useEffect(() => {
-    const serverUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5001';
+    const serverUrl = getSocketUrl();
     const socketInstance = io(serverUrl, {
       transports: ['websocket', 'polling'],
       reconnectionAttempts: 10,

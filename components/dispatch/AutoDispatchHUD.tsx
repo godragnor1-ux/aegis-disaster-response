@@ -32,7 +32,7 @@ export const AutoDispatchHUD: React.FC = () => {
   const [isAutoDispatchingAll, setIsAutoDispatchingAll] = useState(false);
   const [dispatchSuccess, setDispatchSuccess] = useState<string | null>(null);
 
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   const pendingBeacons = sosBeacons.filter((b) => b.status === 'pending');
   const activeResponders = responders;

@@ -12,6 +12,7 @@ import {
   ChatMessage
 } from '@/types';
 import { enqueueOfflineRequest } from '@utils/offlineQueue';
+import { getApiUrl } from '../utils/apiConfig';
 
 interface EmergencyContextType {
   incidents: Incident[];
@@ -71,7 +72,7 @@ export const EmergencyProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     timestamp: string;
   } | null>(null);
 
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = getApiUrl();
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // High-performance batched initial load

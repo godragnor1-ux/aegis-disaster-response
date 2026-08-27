@@ -57,7 +57,7 @@ export const MissingPersonsView: React.FC = () => {
   const [isSubmittingPerson, setIsSubmittingPerson] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   // Handle Photo File Selection
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

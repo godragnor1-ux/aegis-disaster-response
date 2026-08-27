@@ -1,7 +1,4 @@
-/**
- * Offline Request Queue & LocalStorage Persistence Manager
- * Automatically buffers API requests when connectivity drops and replays them upon reconnection.
- */
+import { getApiUrl } from './apiConfig.js';
 
 const OFFLINE_QUEUE_KEY = 'aegis_offline_request_queue_v1';
 
@@ -79,7 +76,7 @@ export const clearOfflineQueue = () => {
  * Sync and replay all buffered requests to the backend server
  * @param {string} serverUrl
  */
-export const syncOfflineQueue = async (serverUrl = 'http://localhost:5001') => {
+export const syncOfflineQueue = async (serverUrl = getApiUrl()) => {
   const queue = getOfflineQueue();
   if (queue.length === 0) {
     return { totalSynced: 0, failedCount: 0, results: [] };

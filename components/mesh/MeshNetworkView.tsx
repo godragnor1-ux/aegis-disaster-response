@@ -22,7 +22,7 @@ export const MeshNetworkView: React.FC = () => {
     hops: { hopIndex: number; from: string; to: string; latencyMs: number; protocol: string; rssi: number; status: string }[];
   } | null>(null);
 
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   const handleSimulateMeshRelay = async () => {
     setIsSimulatingPacket(true);

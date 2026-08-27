@@ -36,7 +36,7 @@ export const DisasterPredictionView: React.FC = () => {
   } | null>(null);
 
   const [selectedTimelineIndex, setSelectedTimelineIndex] = useState(2);
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
+  const serverUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5001';
 
   useEffect(() => {
     fetch(`${serverUrl}/api/prediction/forecast`)
