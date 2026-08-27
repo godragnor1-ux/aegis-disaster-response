@@ -1,8 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
-
 import { getSocketUrl } from '../utils/apiConfig';
 
 interface SocketContextType {
@@ -23,23 +22,46 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [activeChannel, setActiveChannel] = useState('citizen_public');
+  const activeChannelRef = useRef(activeChannel);
+
+  useEffect(() => {
+    activeChannelRef.current = activeChannel;
+  }, [activeChannel]);
 
   useEffect(() => {
     const serverUrl = getSocketUrl();
+    console.log(`📡 [Socket.IO Client] Initializing connection to: ${serverUrl}`);
+
     const socketInstance = io(serverUrl, {
-      transports: ['websocket', 'polling'],
-      reconnectionAttempts: 10,
-      reconnectionDelay: 2000,
+      transports: ['polling', 'websocket'], // Robust cloud transport negotiation
+      reconnectionAttempts: 25,
+      reconnectionDelay: 1500,
+      reconnectionDelayMax: 5000,
+      timeout: 20000,
+      withCredentials: true,
     });
 
     socketInstance.on('connect', () => {
-      console.log('✅ Socket connected:', socketInstance.id);
+      console.log(`✅ [Socket.IO Client] Connected to gateway with ID: ${socketInstance.id}`);
       setIsConnected(true);
-      socketInstance.emit('channel:join', activeChannel);
+      socketInstance.emit('channel:join', activeChannelRef.current);
       socketInstance.emit('channel:join', 'command_ops');
     });
 
-    socketInstance.on('disconnect', () => {
+    socketInstance.on('reconnect', (attemptNumber) => {
+      console.log(`🔄 [Socket.IO Client] Reconnected after ${attemptNumber} attempts.`);
+      setIsConnected(true);
+      socketInstance.emit('channel:join', activeChannelRef.current);
+      socketInstance.emit('channel:join', 'command_ops');
+    });
+
+    socketInstance.on('connect_error', (err) => {
+      console.warn('⚠️ [Socket.IO Client] Connection error:', err.message);
+      setIsConnected(false);
+    });
+
+    socketInstance.on('disconnect', (reason) => {
+      console.warn('🔌 [Socket.IO Client] Disconnected:', reason);
       setIsConnected(false);
     });
 
@@ -65,3 +87,4 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 };
 
 export const useSocket = () => useContext(SocketContext);
+export default SocketContext;

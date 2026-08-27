@@ -19,23 +19,58 @@ const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5001;
 
-// CORS Configuration supporting Vercel and local origins
-const clientOrigin = process.env.CLIENT_ORIGIN
+// CORS Configuration supporting Vercel production, preview deployments, and local development
+const rawAllowedOrigins = process.env.CLIENT_ORIGIN
   ? process.env.CLIENT_ORIGIN.split(',').map((o) => o.trim())
-  : '*';
+  : [];
 
-// Socket.IO Setup
+const corsOriginHandler = (origin, callback) => {
+  // Allow requests with no origin (mobile apps, curl, server-to-server)
+  if (!origin) return callback(null, true);
+
+  // If no explicit list or wildcard is set, allow all
+  if (rawAllowedOrigins.length === 0 || rawAllowedOrigins.includes('*')) {
+    return callback(null, true);
+  }
+
+  // Check explicit match or any *.vercel.app domain
+  const isAllowed =
+    rawAllowedOrigins.includes(origin) ||
+    /\.vercel\.app$/.test(origin) ||
+    /^http:\/\/localhost:\d+$/.test(origin);
+
+  if (isAllowed) {
+    return callback(null, true);
+  }
+
+  // Permissive fallback in disaster coordination
+  return callback(null, true);
+};
+
+// Socket.IO Setup tuned for Render Web Services & Vercel
 const io = new Server(server, {
   cors: {
-    origin: clientOrigin,
+    origin: corsOriginHandler,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     credentials: true,
   },
-  transports: ['websocket', 'polling'],
+  transports: ['polling', 'websocket'], // Polling first for reliable handshake on cloud edge, auto-upgrades to WSS
+  pingTimeout: 60000,                  // Prevents Render 60s idle disconnects
+  pingInterval: 25000,
+  connectTimeout: 45000,
+  maxHttpBufferSize: 1e8,              // 100MB buffer for voice and photo bursts
 });
 
 // Middleware
-app.use(cors({ origin: clientOrigin, credentials: true }));
+app.use(
+  cors({
+    origin: corsOriginHandler,
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
