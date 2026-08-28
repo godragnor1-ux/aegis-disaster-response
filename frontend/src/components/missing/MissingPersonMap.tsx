@@ -2,6 +2,7 @@
 
 import React, { useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { MissingPerson } from '@/types';
 import { MapPin, Phone, Heart, Users, CheckCircle } from 'lucide-react';

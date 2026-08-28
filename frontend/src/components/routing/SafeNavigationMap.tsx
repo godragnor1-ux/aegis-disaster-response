@@ -10,6 +10,7 @@ import {
   Polygon,
   Circle
 } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Incident, Shelter, SafeRouteResult } from '@/types';
 import { ShieldCheck, AlertTriangle, Navigation, MapPin, Hospital } from 'lucide-react';

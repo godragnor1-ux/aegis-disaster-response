@@ -13,6 +13,7 @@ import {
   Polyline,
   useMap
 } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {
   Layers,
@@ -47,10 +48,10 @@ export const TacticalDisasterMap: React.FC = () => {
   const [mapCenter, setMapCenter] = useState<[number, number]>([28.6185, 77.2150]);
   const [zoomLevel, setZoomLevel] = useState<number>(13);
 
-  // Map Tile Providers (Mapbox / CartoDB / Esri Satellite)
-  const [tileProvider, setTileProvider] = useState<'mapbox_dark' | 'satellite' | 'carto_dark' | 'osm'>('mapbox_dark');
+  // Map Tile Providers (CartoDB Dark / Mapbox / Esri Satellite) - Default to carto_dark for 100% instant rendering
+  const [tileProvider, setTileProvider] = useState<'mapbox_dark' | 'satellite' | 'carto_dark' | 'osm'>('carto_dark');
   const [mapboxToken, setMapboxToken] = useState<string>(
-    process.env.NEXT_PUBLIC_MAPBOX_TOKEN || 'pk.eyJ1IjoiYWVnaXMtcHVsc2UiLCJhIjoiY2x6cHVsc2VnbTAwMTJrb2Rlc2luZXRhIn0.demo'
+    process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''
   );
 
   // Layer Visibility
@@ -192,11 +193,17 @@ export const TacticalDisasterMap: React.FC = () => {
 
   // Tile Provider URL with Mapbox AI Vector & Satellite fallback
   const getTileUrl = () => {
-    if (tileProvider === 'mapbox_dark' && mapboxToken && mapboxToken.startsWith('pk.')) {
+    const isValidMapbox =
+      mapboxToken &&
+      mapboxToken.startsWith('pk.') &&
+      !mapboxToken.includes('demo') &&
+      !mapboxToken.includes('sample');
+
+    if (tileProvider === 'mapbox_dark' && isValidMapbox) {
       return `https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxToken}`;
     }
     if (tileProvider === 'satellite') {
-      if (mapboxToken && mapboxToken.startsWith('pk.')) {
+      if (isValidMapbox) {
         return `https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxToken}`;
       }
       return 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
@@ -204,7 +211,7 @@ export const TacticalDisasterMap: React.FC = () => {
     if (tileProvider === 'osm') {
       return 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     }
-    // High-performance Dark Matter GIS tiles (CartoDB / Mapbox Dark equivalent)
+    // High-performance Dark Matter GIS tiles (CartoDB / Mapbox Dark equivalent - 100% Reliable & Free)
     return 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
   };
 
