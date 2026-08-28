@@ -211,8 +211,8 @@ export const TacticalDisasterMap: React.FC = () => {
     if (tileProvider === 'osm') {
       return 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     }
-    // High-performance Dark Matter GIS tiles (CartoDB / Mapbox Dark equivalent - 100% Reliable & Free)
-    return 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    // High-performance Dark Matter GIS tiles (Esri ArcGIS Dark Gray Base - 100% Free & No Watermark)
+    return 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
   };
 
   return (
