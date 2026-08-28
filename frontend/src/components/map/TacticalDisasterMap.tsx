@@ -234,14 +234,14 @@ export const TacticalDisasterMap: React.FC = () => {
             <label className="text-[10px] text-slate-400 block mb-1 font-bold">MAP ENGINE & BASEMAP:</label>
             <div className="grid grid-cols-2 gap-1 text-[10px]">
               <button
-                onClick={() => setTileProvider('mapbox_dark')}
+                onClick={() => setTileProvider('carto_dark')}
                 className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
-                  tileProvider === 'mapbox_dark'
+                  tileProvider === 'carto_dark'
                     ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
                     : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
                 }`}
               >
-                🌌 Mapbox Dark
+                🌌 Tactical Dark
               </button>
               <button
                 onClick={() => setTileProvider('satellite')}
@@ -252,6 +252,26 @@ export const TacticalDisasterMap: React.FC = () => {
                 }`}
               >
                 🛰️ Satellite Recon
+              </button>
+              <button
+                onClick={() => setTileProvider('osm')}
+                className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
+                  tileProvider === 'osm'
+                    ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
+                    : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+                }`}
+              >
+                🗺️ Street View
+              </button>
+              <button
+                onClick={() => setTileProvider('mapbox_dark')}
+                className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
+                  tileProvider === 'mapbox_dark'
+                    ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
+                    : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+                }`}
+              >
+                ✨ Mapbox HD
               </button>
             </div>
           </div>
