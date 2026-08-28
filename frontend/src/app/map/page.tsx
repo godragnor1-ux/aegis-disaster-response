@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Header } from '@components/common/Header';
-import { EmergencyBroadcastBanner } from '@components/common/EmergencyBroadcastBanner';
-import { FuturisticNavbar } from '@components/common/FuturisticNavbar';
-import { DynamicTacticalMap } from '@components/map/DynamicTacticalMap';
+import { Header } from '@/components/common/Header';
+import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcastBanner';
+import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
+import { DynamicTacticalMap } from '@/components/map/DynamicTacticalMap';
 import { useEmergency } from '@/context/EmergencyContext';
 import {
   Map,

@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
-import { Header } from '@components/common/Header';
-import { EmergencyBroadcastBanner } from '@components/common/EmergencyBroadcastBanner';
-import { FuturisticNavbar } from '@components/common/FuturisticNavbar';
-import { MissingPersonsView } from '@components/missing/MissingPersonsView';
+import { Header } from '@/components/common/Header';
+import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcastBanner';
+import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
+import { MissingPersonsView } from '@/components/missing/MissingPersonsView';
 import {
   Search,
   Heart,

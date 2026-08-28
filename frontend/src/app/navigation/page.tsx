@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Header } from '@components/common/Header';
-import { EmergencyBroadcastBanner } from '@components/common/EmergencyBroadcastBanner';
-import { FuturisticNavbar } from '@components/common/FuturisticNavbar';
-import { DynamicRoutingView } from '@components/routing/DynamicRoutingView';
-import { SafeZonesView } from '@components/shelters/SafeZonesView';
+import { Header } from '@/components/common/Header';
+import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcastBanner';
+import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
+import { DynamicRoutingView } from '@/components/routing/DynamicRoutingView';
+import { SafeZonesView } from '@/components/shelters/SafeZonesView';
 import {
   Navigation,
   Building2,

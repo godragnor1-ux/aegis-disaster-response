@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Header } from '@components/common/Header';
-import { EmergencyBroadcastBanner } from '@components/common/EmergencyBroadcastBanner';
-import { FuturisticNavbar } from '@components/common/FuturisticNavbar';
-import { AutoDispatchHUD } from '@components/dispatch/AutoDispatchHUD';
-import { AIDamageScanner } from '@components/ai/AIDamageScanner';
-import { SOSBeaconView } from '@components/sos/SOSBeaconView';
-import { MeshNetworkView } from '@components/mesh/MeshNetworkView';
-import { DisasterPredictionView } from '@components/predict/DisasterPredictionView';
+import { Header } from '@/components/common/Header';
+import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcastBanner';
+import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
+import { AutoDispatchHUD } from '@/components/dispatch/AutoDispatchHUD';
+import { AIDamageScanner } from '@/components/ai/AIDamageScanner';
+import { SOSBeaconView } from '@/components/sos/SOSBeaconView';
+import { MeshNetworkView } from '@/components/mesh/MeshNetworkView';
+import { DisasterPredictionView } from '@/components/predict/DisasterPredictionView';
 import {
   Activity,
   Sparkles,

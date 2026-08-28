@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Header } from '@components/common/Header';
-import { EmergencyBroadcastBanner } from '@components/common/EmergencyBroadcastBanner';
-import { FuturisticNavbar } from '@components/common/FuturisticNavbar';
-import { AnimatedGlowingSOSButton } from '@components/sos/AnimatedGlowingSOSButton';
-import { OneTapSOSModal } from '@components/sos/OneTapSOSModal';
+import { Header } from '@/components/common/Header';
+import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcastBanner';
+import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
+import { AnimatedGlowingSOSButton } from '@/components/sos/AnimatedGlowingSOSButton';
+import { OneTapSOSModal } from '@/components/sos/OneTapSOSModal';
 import { useEmergency } from '@/context/EmergencyContext';
 import { useAudioSiren } from '@/context/AudioSirenContext';
 import {
