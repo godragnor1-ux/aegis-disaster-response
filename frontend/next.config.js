@@ -33,6 +33,10 @@ const nextConfig = {
     NEXT_PUBLIC_API_URL: resolvedApiUrl,
     NEXT_PUBLIC_SERVER_URL: resolvedApiUrl,
     NEXT_PUBLIC_SOCKET_URL: resolvedSocketUrl,
+    NEXT_PUBLIC_MAPBOX_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '',
+    NEXT_PUBLIC_GEMINI_API_KEY: process.env.NEXT_PUBLIC_GEMINI_API_KEY || '',
+    NEXT_PUBLIC_OPENAI_API_KEY: process.env.NEXT_PUBLIC_OPENAI_API_KEY || '',
+    NEXT_PUBLIC_WEATHER_API_KEY: process.env.NEXT_PUBLIC_WEATHER_API_KEY || '',
   },
   webpack: (config) => {
     config.resolve.modules = [

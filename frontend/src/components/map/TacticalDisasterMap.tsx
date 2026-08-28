@@ -190,9 +190,15 @@ export const TacticalDisasterMap: React.FC = () => {
     };
   }, [isSimulatingFleet, responders, socket]);
 
-  // Tile Provider URL & Attribution
+  // Tile Provider URL with Mapbox AI Vector & Satellite fallback
   const getTileUrl = () => {
+    if (tileProvider === 'mapbox_dark' && mapboxToken && mapboxToken.startsWith('pk.')) {
+      return `https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxToken}`;
+    }
     if (tileProvider === 'satellite') {
+      if (mapboxToken && mapboxToken.startsWith('pk.')) {
+        return `https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxToken}`;
+      }
       return 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
     }
     if (tileProvider === 'osm') {
