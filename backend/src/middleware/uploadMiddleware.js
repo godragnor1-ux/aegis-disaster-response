@@ -6,8 +6,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Ensure uploads directory exists
-const uploadDir = path.join(__dirname, '../uploads');
+// Ensure uploads directory exists.
+// This file lives at backend/src/middleware/, so the backend root is two levels up —
+// it must match the static route in server.js (`<backend>/uploads`).
+const uploadDir = path.join(__dirname, '../../uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }

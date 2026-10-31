@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import multer from 'multer';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -107,6 +108,30 @@ app.get('/', (req, res) => {
 
 // Mount Routes
 app.use('/api', apiRoutes);
+
+// JSON error handler. Multer rejects bad uploads (wrong mime type, over the size limit) by
+// throwing, and Express' default handler answers with an HTML page — a JSON client cannot parse
+// that, so map the known upload failures to a 400 with a body.
+app.use((err, req, res, next) => {
+  if (res.headersSent) return next(err);
+
+  const isUploadError =
+    err instanceof multer.MulterError || /Invalid file type/i.test(err?.message || '');
+  if (isUploadError) {
+    return res.status(400).json({
+      success: false,
+      error: err.code || 'INVALID_UPLOAD',
+      message: err.message,
+    });
+  }
+
+  console.error('[unhandled]', err);
+  res.status(err.status || 500).json({
+    success: false,
+    error: 'INTERNAL_ERROR',
+    message: process.env.NODE_ENV === 'production' ? 'Internal server error' : err.message,
+  });
+});
 
 // Setup Sockets
 setupSocketHandlers(io);
