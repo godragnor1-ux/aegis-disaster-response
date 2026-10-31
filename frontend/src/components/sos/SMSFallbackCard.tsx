@@ -58,7 +58,7 @@ export const SMSFallbackCard: React.FC<SMSFallbackCardProps> = ({
 
       {/* Encoded SMS String Display */}
       <div className="p-3 rounded-xl bg-black/80 border border-tactical-700 flex items-center justify-between gap-2">
-        <span className="text-cyan-300 font-mono text-xs font-bold truncate select-all">{smsCode}</span>
+        <span className="text-ink font-mono text-xs font-bold truncate select-all">{smsCode}</span>
         <button
           onClick={handleCopy}
           className="p-1.5 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-slate-300 hover:text-white flex-shrink-0 transition-colors"
@@ -72,7 +72,7 @@ export const SMSFallbackCard: React.FC<SMSFallbackCardProps> = ({
       <div className="space-y-2">
         <a
           href={smsUri}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-xs uppercase flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all"
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-xs uppercase flex items-center justify-center gap-2 transition-all"
         >
           <MessageSquare className="w-4 h-4" />
           <span>📲 LAUNCH NATIVE SMS TO CIVIL DEFENSE ({gatewayPhone})</span>

@@ -4,7 +4,9 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: npm install
+    # backend/ is a self-contained package after the restructure: it owns its own
+    # node_modules, so the install must run inside it, not at the repo root.
+    buildCommand: cd backend && npm install
     startCommand: node backend/server.js
     healthCheckPath: /health
     autoDeploy: true

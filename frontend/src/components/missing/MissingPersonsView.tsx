@@ -186,14 +186,14 @@ export const MissingPersonsView: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           {/* View Mode Switcher */}
           <div className="flex items-center p-1 rounded-xl bg-tactical-900 border border-tactical-700 text-xs">
             <button
               onClick={() => setViewMode('split')}
               className={`px-3 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
-                viewMode === 'split' ? 'bg-cyan-950 text-cyan-300 font-bold border border-cyan-500' : 'text-slate-400'
-              }`}
+ viewMode === 'split' ? 'bg-surface-2 text-ink font-bold border border-hairline-strong' : 'text-slate-400'
+ }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Split View</span>
@@ -201,8 +201,8 @@ export const MissingPersonsView: React.FC = () => {
             <button
               onClick={() => setViewMode('map')}
               className={`px-3 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
-                viewMode === 'map' ? 'bg-cyan-950 text-cyan-300 font-bold border border-cyan-500' : 'text-slate-400'
-              }`}
+ viewMode === 'map' ? 'bg-surface-2 text-ink font-bold border border-hairline-strong' : 'text-slate-400'
+ }`}
             >
               <MapIcon className="w-3.5 h-3.5" />
               <span>Map Only</span>
@@ -210,8 +210,8 @@ export const MissingPersonsView: React.FC = () => {
             <button
               onClick={() => setViewMode('grid')}
               className={`px-3 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
-                viewMode === 'grid' ? 'bg-cyan-950 text-cyan-300 font-bold border border-cyan-500' : 'text-slate-400'
-              }`}
+ viewMode === 'grid' ? 'bg-surface-2 text-ink font-bold border border-hairline-strong' : 'text-slate-400'
+ }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
               <span>Cards Only</span>
@@ -220,7 +220,7 @@ export const MissingPersonsView: React.FC = () => {
 
           <button
             onClick={() => setShowCreateModal(true)}
-            className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs flex items-center gap-2 shadow-[0_0_20px_rgba(244,63,94,0.5)] border border-rose-400 transition-all"
+            className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs flex items-center gap-2 border border-rose-400 transition-all"
           >
             <UserPlus className="w-4 h-4" />
             <span>REPORT MISSING PERSON</span>
@@ -239,7 +239,7 @@ export const MissingPersonsView: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, clothing, landmark, or medical condition..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-hairline-strong"
             />
           </div>
 
@@ -248,7 +248,7 @@ export const MissingPersonsView: React.FC = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-slate-200 text-xs focus:outline-none focus:border-cyan-400 font-bold"
+              className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-slate-200 text-xs focus:outline-none focus:border-hairline-strong font-bold"
             >
               <option value="all">ALL STATUSES ({missingPersons.length})</option>
               <option value="missing">🔴 MISSING ONLY</option>
@@ -263,7 +263,7 @@ export const MissingPersonsView: React.FC = () => {
             <select
               value={ageGroupFilter}
               onChange={(e) => setAgeGroupFilter(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-slate-200 text-xs focus:outline-none focus:border-cyan-400 font-bold"
+              className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-slate-200 text-xs focus:outline-none focus:border-hairline-strong font-bold"
             >
               <option value="all">ALL AGE GROUPS</option>
               <option value="children">Children (0 - 12 yrs)</option>
@@ -280,8 +280,8 @@ export const MissingPersonsView: React.FC = () => {
         {(viewMode === 'map' || viewMode === 'split') && (
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs text-slate-400">
-              <span className="font-bold text-cyan-300 flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-cyan-400" />
+              <span className="font-bold text-ink flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-ink" />
                 GEOSPATIAL REGISTRY MAP ({filteredList.length} LOCATIONS PINNED)
               </span>
               <span className="text-[10px]">Click any avatar pin to inspect profile</span>
@@ -297,7 +297,7 @@ export const MissingPersonsView: React.FC = () => {
                 <div
                   key={person._id}
                   onClick={() => setSelectedPerson(person)}
-                  className="tactical-card p-4 rounded-2xl border border-tactical-700/80 hover:border-cyan-400 cursor-pointer transition-all flex flex-col justify-between group shadow-xl"
+                  className="tactical-card p-4 rounded-2xl border border-tactical-700/80 hover:border-hairline-strong cursor-pointer transition-all flex flex-col justify-between group shadow-xl"
                 >
                   <div className="space-y-3">
                     <div className="relative h-48 rounded-xl overflow-hidden bg-tactical-900 border border-tactical-700">
@@ -309,14 +309,14 @@ export const MissingPersonsView: React.FC = () => {
                       <div className="absolute top-2 right-2">
                         <span
                           className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                            person.status === 'missing'
-                              ? 'bg-red-950 text-red-300 border border-red-600 animate-pulse'
-                              : person.status === 'spotted'
-                              ? 'bg-yellow-950 text-yellow-300 border border-yellow-500'
-                              : person.status === 'sheltered'
-                              ? 'bg-cyan-950 text-cyan-300 border border-cyan-500'
-                              : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
-                          }`}
+ person.status === 'missing'
+ ? 'bg-red-950 text-red-300 border border-red-600 animate-pulse'
+ : person.status === 'spotted'
+ ? 'bg-yellow-950 text-yellow-300 border border-yellow-500'
+ : person.status === 'sheltered'
+ ? 'bg-surface-2 text-ink border border-hairline-strong'
+ : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
+ }`}
                         >
                           {person.status}
                         </span>
@@ -324,7 +324,7 @@ export const MissingPersonsView: React.FC = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      <h3 className="text-base font-bold text-white group-hover:text-ink transition-colors">
                         {person.name}, {person.age} ({person.gender})
                       </h3>
                       <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
@@ -361,16 +361,16 @@ export const MissingPersonsView: React.FC = () => {
       {/* Selected Person Detail & Sighting Tip Modal */}
       {selectedPerson && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="tactical-card max-w-2xl w-full p-6 rounded-2xl border border-cyan-500/50 shadow-2xl max-h-[90vh] overflow-y-auto space-y-5">
+          <div className="tactical-card max-w-2xl w-full p-6 rounded-2xl border border-hairline-strong shadow-2xl max-h-[90vh] overflow-y-auto space-y-5">
             <div className="flex items-center justify-between border-b border-tactical-700 pb-3">
               <div className="flex items-center gap-2">
                 <span className="font-bold text-white text-lg">{selectedPerson.name}</span>
                 <span
                   className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
-                    selectedPerson.status === 'missing'
-                      ? 'bg-red-950 text-red-300 border border-red-600'
-                      : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
-                  }`}
+ selectedPerson.status === 'missing'
+ ? 'bg-red-950 text-red-300 border border-red-600'
+ : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
+ }`}
                 >
                   {selectedPerson.status}
                 </span>
@@ -399,7 +399,7 @@ export const MissingPersonsView: React.FC = () => {
             {/* Sighting Tips Feed */}
             <div className="space-y-2 pt-2 border-t border-tactical-700">
               <h4 className="font-bold text-slate-200 text-xs uppercase flex items-center gap-1.5">
-                <MessageSquare className="w-4 h-4 text-cyan-400" />
+                <MessageSquare className="w-4 h-4 text-ink" />
                 Community Sighting Tips ({selectedPerson.tips?.length || 0})
               </h4>
 
@@ -409,7 +409,7 @@ export const MissingPersonsView: React.FC = () => {
                 ) : (
                   selectedPerson.tips.map((tip, idx) => (
                     <div key={idx} className="p-2.5 rounded-lg bg-tactical-900/90 border border-tactical-800 text-xs text-slate-300 space-y-0.5">
-                      <div className="flex items-center justify-between text-[10px] text-cyan-300">
+                      <div className="flex items-center justify-between text-[10px] text-ink">
                         <span className="font-bold">{tip.reporterName}</span>
                         <span className="text-slate-500">{new Date(tip.timestamp).toLocaleDateString()}</span>
                       </div>
@@ -449,7 +449,7 @@ export const MissingPersonsView: React.FC = () => {
               <button
                 onClick={() => handleAddTip(selectedPerson._id)}
                 disabled={isSubmittingTip || !tipComment.trim()}
-                className="w-full py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs uppercase"
+                className="w-full py-2 rounded-lg bg-brand hover:bg-brand-hover text-white font-bold text-xs uppercase"
               >
                 {isSubmittingTip ? 'Submitting Tip...' : 'Submit Sighting Tip'}
               </button>
@@ -581,7 +581,7 @@ export const MissingPersonsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="px-3 py-2 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-cyan-300 border border-cyan-500/40 text-xs flex items-center gap-1.5"
+                  className="px-3 py-2 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-ink border border-hairline-strong text-xs flex items-center gap-1.5"
                 >
                   <Upload className="w-3.5 h-3.5" />
                   <span>Choose File...</span>
@@ -595,7 +595,7 @@ export const MissingPersonsView: React.FC = () => {
                 />
               </div>
               {photoBase64 && (
-                <div className="mt-2 w-16 h-16 rounded-lg overflow-hidden border border-cyan-400">
+                <div className="mt-2 w-16 h-16 rounded-lg overflow-hidden border border-hairline-strong">
                   <img src={photoBase64} alt="Preview" className="w-full h-full object-cover" />
                 </div>
               )}
@@ -604,7 +604,7 @@ export const MissingPersonsView: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmittingPerson}
-              className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(244,63,94,0.6)]"
+              className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs uppercase tracking-wider"
             >
               {isSubmittingPerson ? 'REGISTERING REPORT...' : 'REGISTER MISSING PERSON REPORT'}
             </button>

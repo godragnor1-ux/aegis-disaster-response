@@ -5,9 +5,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { connectDB, seedInitialDisasterData } from '../database/index.js';
-import { setupSocketHandlers } from './sockets/socketHandler.js';
-import apiRoutes from './routes/api.js';
+import { connectDB, seedInitialDisasterData } from './src/models/index.js';
+import { setupSocketHandlers } from './src/sockets/socketHandler.js';
+import apiRoutes from './src/routes/api.js';
 
 dotenv.config();
 

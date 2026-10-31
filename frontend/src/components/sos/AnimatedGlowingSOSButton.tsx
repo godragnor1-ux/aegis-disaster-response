@@ -70,15 +70,15 @@ export const AnimatedGlowingSOSButton: React.FC<AnimatedGlowingSOSButtonProps> =
       {/* Rotating Cyber Reticle Brackets */}
       {isLarge && (
         <div className="absolute w-72 h-72 rounded-full border border-dashed border-red-500/30 cyber-spin-slow pointer-events-none flex items-center justify-between p-2">
-          <div className="w-2 h-2 rounded-full bg-red-400 shadow-[0_0_8px_#ff003c]" />
-          <div className="w-2 h-2 rounded-full bg-tactical-accent shadow-[0_0_8px_#00f0ff]" />
-          <div className="w-2 h-2 rounded-full bg-red-400 shadow-[0_0_8px_#ff003c]" />
-          <div className="w-2 h-2 rounded-full bg-tactical-accent shadow-[0_0_8px_#00f0ff]" />
+          <div className="w-2 h-2 rounded-full bg-red-400" />
+          <div className="w-2 h-2 rounded-full bg-tactical-accent" />
+          <div className="w-2 h-2 rounded-full bg-red-400" />
+          <div className="w-2 h-2 rounded-full bg-tactical-accent" />
         </div>
       )}
 
       {isLarge && (
-        <div className="absolute w-64 h-64 rounded-full border border-cyan-400/20 cyber-spin-reverse pointer-events-none" />
+        <div className="absolute w-64 h-64 rounded-full border border-hairline-strong cyber-spin-reverse pointer-events-none" />
       )}
 
       {/* 3D Glowing SOS Button Core */}
@@ -87,12 +87,12 @@ export const AnimatedGlowingSOSButton: React.FC<AnimatedGlowingSOSButtonProps> =
         whileTap={{ scale: 0.92 }}
         onClick={handleClick}
         className={`relative z-10 rounded-full font-mono font-black text-white cursor-pointer overflow-hidden sos-glow-button transition-all ${
-          isLarge
-            ? 'w-48 h-48 p-2 border-4 border-red-300'
-            : isCompact
-            ? 'w-20 h-20 p-1 border-2 border-red-400'
-            : 'w-36 h-36 p-1.5 border-3 border-red-300'
-        } bg-gradient-to-tr from-red-800 via-rose-600 to-red-500 shadow-[0_0_50px_rgba(255,0,60,0.85),inset_0_0_30px_rgba(255,255,255,0.4)]`}
+ isLarge
+ ? 'w-48 h-48 p-2 border-4 border-red-300'
+ : isCompact
+ ? 'w-20 h-20 p-1 border-2 border-red-400'
+ : 'w-36 h-36 p-1.5 border-3 border-red-300'
+ } bg-gradient-to-tr from-red-800 via-rose-600 to-red-500 `}
       >
         {/* Inner Glass Core Layer */}
         <div className="w-full h-full rounded-full bg-gradient-to-b from-red-950/80 to-black/80 border border-red-400/80 flex flex-col items-center justify-center p-2 backdrop-blur-md relative overflow-hidden">
@@ -112,14 +112,14 @@ export const AnimatedGlowingSOSButton: React.FC<AnimatedGlowingSOSButtonProps> =
 
           <RadioTower
             className={`${
-              isLarge ? 'w-10 h-10' : isCompact ? 'w-5 h-5' : 'w-8 h-8'
-            } text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)] animate-bounce`}
+ isLarge ? 'w-10 h-10' : isCompact ? 'w-5 h-5' : 'w-8 h-8'
+ } text-white drop- animate-bounce`}
           />
 
           <span
             className={`${
-              isLarge ? 'text-2xl tracking-widest mt-1' : isCompact ? 'text-xs' : 'text-lg tracking-wider'
-            } font-black text-white neon-text-red`}
+ isLarge ? 'text-2xl tracking-widest mt-1' : isCompact ? 'text-xs' : 'text-lg tracking-wider'
+ } font-black text-white neon-text-red`}
           >
             {isTriggered ? 'SENT!' : 'SOS'}
           </span>

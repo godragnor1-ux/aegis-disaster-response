@@ -2,258 +2,271 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   Design tokens — Linear design analysis (frontend/DESIGN.md)
+   canvas is #010102, not true black. One chromatic accent (lavender).
+   Severity colours are DERIVED for status only (see note at the bottom);
+   they never fill a card or a border.
+   ========================================================================== */
 :root {
-  --foreground-rgb: 226, 232, 240;
-  --background-start-rgb: 5, 8, 15;
-  --background-end-rgb: 9, 15, 28;
+  /* surfaces — the four-step ladder, never skip a level */
+  --canvas: #010102;
+  --surface-1: #0f1011;
+  --surface-2: #141516;
+  --surface-3: #18191a;
+  --surface-4: #191a1b;
+
+  /* hairlines carry the whole sense of structure */
+  --hairline: #23252a;
+  --hairline-strong: #34343a;
+  --hairline-tertiary: #3e3e44;
+
+  /* ink */
+  --ink: #f7f8f8;
+  --ink-muted: #d0d6e0;
+  --ink-subtle: #8a8f98;
+  --ink-tertiary: #62666d;
+
+  /* the single accent */
+  --brand: #5e6ad2;
+  --brand-hover: #828fff;
+  --brand-focus: #5e69d1;
+
+  /* derived severity — status text and dots only */
+  --critical: #e5484d;
+  --warning: #f5a623;
+  --ok: #27a644;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Linear Display / Text are proprietary; per DESIGN.md use the documented
+     fallback stack rather than silently substituting a different face. */
+  --font-display: "Linear Display", -apple-system, "SF Pro Display", "Segoe UI",
+    "Inter", Roboto, sans-serif;
+  --font-text: "Linear Text", -apple-system, "SF Pro Text", "Segoe UI", "Inter",
+    Roboto, sans-serif;
+  --font-mono: "Linear Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  border-color: var(--hairline);
+}
+
+html {
+  background: var(--canvas);
+  color-scheme: dark;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: radial-gradient(circle at 50% 0%, #0d1b30 0%, #05080f 75%), #05080f;
+  color: var(--ink);
+  background: var(--canvas);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;   /* negative tracking on display is the signature */
+}
+
+::selection {
+  background: rgba(94, 106, 210, 0.35);
+  color: var(--ink);
+}
+
+/* Focus is the accent's job — one visible ring, everywhere */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Trim scrollbars to the surface ladder instead of glowing */::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #070c16;
+  background: var(--canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #193052;
-  border-radius: 3px;
+  background: var(--hairline-strong);
+  border-radius: 9999px;
+  border: 2px solid var(--canvas);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f0ff;
-  box-shadow: 0 0 10px #00f0ff;
+  background: var(--hairline-tertiary);
 }
 
-/* Futuristic Cyber Glassmorphism */
-.glass-panel {
-  background: rgba(11, 19, 32, 0.75);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(0, 240, 255, 0.18);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.08);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* ==========================================================================
+   Legacy utility shims.
+   These class names are used across ~90 call sites in existing components.
+   They are kept so no page breaks, but re-skinned to Linear surfaces: the
+   glassmorphism, neon shadows and lift-on-hover are gone.
+   ========================================================================== */
+.glass-panel,
+.tactical-card {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: border-color 140ms ease, background-color 140ms ease;
 }
 
-.glass-panel:hover {
-  border-color: rgba(0, 240, 255, 0.45);
-  box-shadow: 0 15px 45px -10px rgba(0, 240, 255, 0.25), 0 0 25px rgba(0, 240, 255, 0.15);
+.glass-panel:hover,
+.tactical-card:hover {
+  border-color: var(--hairline-strong);
+  background: var(--surface-2);
+  box-shadow: none;
+  transform: none;
 }
 
 .glass-alert-panel {
-  background: rgba(35, 8, 16, 0.85);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 0, 60, 0.5);
-  box-shadow: 0 10px 40px -10px rgba(255, 0, 60, 0.4), 0 0 25px rgba(255, 0, 60, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--critical);
+  border-radius: var(--radius-lg);
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .glass-alert-panel:hover {
-  border-color: rgba(255, 0, 60, 0.8);
-  box-shadow: 0 15px 50px -10px rgba(255, 0, 60, 0.6), 0 0 35px rgba(255, 0, 60, 0.35);
+  border-color: var(--hairline-strong);
+  border-left-color: var(--critical);
+  box-shadow: none;
 }
 
-/* Neon Glow Accents */
-.neon-glow-cyan {
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 15px rgba(0, 240, 255, 0.2);
-}
-
-.neon-glow-red {
-  box-shadow: 0 0 35px rgba(255, 0, 60, 0.75), inset 0 0 20px rgba(255, 0, 60, 0.3);
-}
-
-.neon-glow-amber {
-  box-shadow: 0 0 30px rgba(245, 158, 11, 0.6), inset 0 0 15px rgba(245, 158, 11, 0.2);
-}
-
-.neon-text-cyan {
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.5);
-}
-
+/* Glow utilities become no-ops — the accent is not decorative here */
+.neon-glow-cyan,
+.neon-glow-red,
+.neon-glow-amber,
+.neon-text-cyan,
 .neon-text-red {
-  text-shadow: 0 0 12px rgba(255, 0, 60, 0.9), 0 0 25px rgba(255, 0, 60, 0.6);
+  text-shadow: none;
+  box-shadow: none;
 }
 
-/* Multi-Ring Pulsing Glow for SOS Button */
-@keyframes sos-core-pulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 40px rgba(255, 0, 60, 0.8), 0 0 80px rgba(255, 0, 60, 0.4), inset 0 0 25px rgba(255, 255, 255, 0.6);
-  }
-  50% {
-    transform: scale(1.04);
-    box-shadow: 0 0 70px rgba(255, 0, 60, 1), 0 0 130px rgba(255, 0, 60, 0.7), inset 0 0 40px rgba(255, 255, 255, 0.9);
-  }
-}
-
-@keyframes ring-expand-1 {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.9;
-  }
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
-
-@keyframes ring-expand-2 {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-}
-
-@keyframes ring-expand-3 {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
-}
-
-@keyframes border-beam {
-  100% {
-    offset-distance: 100%;
-  }
-}
-
-@keyframes cyber-rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.sos-glow-button {
-  animation: sos-core-pulse 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-}
-
-.sos-ring-1 {
-  animation: ring-expand-1 2.4s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
-}
-
-.sos-ring-2 {
-  animation: ring-expand-2 2.4s infinite 0.8s cubic-bezier(0.1, 0.8, 0.3, 1);
-}
-
-.sos-ring-3 {
-  animation: ring-expand-3 2.4s infinite 1.6s cubic-bezier(0.1, 0.8, 0.3, 1);
-}
-
-.cyber-spin-slow {
-  animation: cyber-rotate 12s linear infinite;
-}
-
-.cyber-spin-reverse {
-  animation: cyber-rotate 8s linear infinite reverse;
-}
-
-/* 3D Depth Card Transform & Hover Micro-Interactions */
 .cyber-card-depth {
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
-  will-change: transform;
+  transition: border-color 140ms ease, background-color 140ms ease;
+  will-change: auto;
 }
 
 .cyber-card-depth:hover {
-  transform: translateY(-5px) scale(1.015);
-  box-shadow: 0 20px 45px -10px rgba(0, 240, 255, 0.35), 0 0 25px rgba(0, 240, 255, 0.2);
+  transform: none;
+  box-shadow: none;
+  border-color: var(--hairline-strong);
 }
 
-/* Scanline Overlay for Cyber Command Feel */
+/* Atmospheric layers removed (DESIGN.md: no gradients, no scanlines).
+   hologram-grid sits on <main>, so it must not be display:none — only neutralised. */
 .scanlines {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
-  ), linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.03),
-    rgba(0, 255, 0, 0.01),
-    rgba(0, 0, 255, 0.03)
-  );
-  background-size: 100% 3px, 6px 100%;
-  pointer-events: none;
+  display: none;
 }
 
-/* Hologram Grid Background */
 .hologram-grid {
-  background-image: 
-    linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: none;
 }
 
-/* Leaflet Dark Customizations */
+.radar-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* SOS keeps a real pulse — it is the one place motion carries meaning */
+@keyframes sos-core-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.sos-glow-button {
+  animation: sos-core-pulse 2.6s ease-in-out infinite;
+  box-shadow: 0 0 0 1px var(--hairline-strong), 0 8px 24px -8px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes ring-expand {
+  0% { transform: scale(1); opacity: 0.35; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+.sos-ring-1 { animation: ring-expand 3s infinite ease-out; }
+.sos-ring-2 { animation: ring-expand 3s infinite 1s ease-out; }
+.sos-ring-3 { animation: ring-expand 3s infinite 2s ease-out; }
+
+@keyframes cyber-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.cyber-spin-slow { animation: cyber-rotate 24s linear infinite; }
+.cyber-spin-reverse { animation: cyber-rotate 32s linear infinite reverse; }
+
+/* ==========================================================================
+   Leaflet — retheme to the surface ladder
+   ========================================================================== */
 .leaflet-container {
-  background: #05080f !important;
-  font-family: inherit;
+  background: var(--surface-1) !important;
+  font-family: var(--font-text);
+  font-size: 13px;
 }
 
 .leaflet-popup-content-wrapper {
-  background: rgba(9, 15, 28, 0.95) !important;
-  color: #e2e8f0 !important;
-  border: 1px solid #00f0ff !important;
-  border-radius: 12px !important;
-  box-shadow: 0 15px 35px rgba(0, 240, 255, 0.3) !important;
-  backdrop-filter: blur(12px);
+  background: var(--surface-2) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--hairline-strong) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.85) !important;
 }
 
 .leaflet-popup-tip {
-  background: #090f1c !important;
+  background: var(--surface-2) !important;
 }
 
-/* Radar Sweep Line Effect */
-.radar-grid {
-  background-image: 
-    radial-gradient(circle at center, transparent 0, transparent 40px, rgba(0, 240, 255, 0.1) 41px, transparent 42px),
-    radial-gradient(circle at center, transparent 0, transparent 90px, rgba(0, 240, 255, 0.1) 91px, transparent 92px),
-    radial-gradient(circle at center, transparent 0, transparent 150px, rgba(0, 240, 255, 0.1) 151px, transparent 152px),
-    radial-gradient(circle at center, transparent 0, transparent 220px, rgba(0, 240, 255, 0.1) 221px, transparent 222px),
-    linear-gradient(to right, rgba(0, 240, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+.leaflet-control-attribution {
+  background: rgba(1, 1, 2, 0.8) !important;
+  color: var(--ink-tertiary) !important;
 }
 
-/* GPU Hardware Acceleration & Ultra-Smooth UI Rendering */
-.gpu-accelerate {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: transform, opacity;
+.leaflet-control-attribution a {
+  color: var(--ink-subtle) !important;
 }
 
-.tactical-card {
-  background: rgba(10, 16, 28, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(28, 45, 74, 0.85);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
-  transform: translateZ(0);
-  will-change: transform, box-shadow;
+/* ==========================================================================
+   Primitives used by the rebuilt screens
+   ========================================================================== */
+.metric-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
 }
 
-.tactical-card:hover {
-  transform: translateY(-2px) translateZ(0);
-  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+
+.hairline-divide > * + * {
+  border-top: 1px solid var(--hairline);
 }
 
 @media (prefers-reduced-motion: reduce) {

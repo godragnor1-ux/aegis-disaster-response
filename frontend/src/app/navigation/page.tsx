@@ -6,64 +6,58 @@ import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcast
 import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
 import { DynamicRoutingView } from '@/components/routing/DynamicRoutingView';
 import { SafeZonesView } from '@/components/shelters/SafeZonesView';
-import {
-  Navigation,
-  Building2,
-  ShieldCheck,
-  Compass,
-  Milestone
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Navigation, Building2 } from 'lucide-react';
+
+const TABS = [
+  { id: 'routing' as const, label: 'Routing solver', icon: Navigation },
+  { id: 'shelters' as const, label: 'Safe zones', icon: Building2 },
+];
 
 export default function SafeNavigationPage() {
   const [activeTab, setActiveTab] = useState<'routing' | 'shelters'>('routing');
 
   return (
-    <main className="flex-1 flex flex-col min-h-screen hologram-grid relative">
+    <main className="flex min-h-screen flex-1 flex-col">
       <Header />
       <EmergencyBroadcastBanner />
       <FuturisticNavbar />
 
-      <div className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-6 space-y-6">
-        {/* Sub-tab switcher */}
-        <div className="flex items-center gap-3 font-mono text-xs">
-          <button
-            onClick={() => setActiveTab('routing')}
-            className={`px-4 py-2 rounded-xl font-bold flex items-center gap-2 border transition-all cyber-card-depth ${
-              activeTab === 'routing'
-                ? 'glass-panel border-tactical-accent text-cyan-300 neon-glow-cyan'
-                : 'glass-panel border-tactical-700 text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Navigation className="w-4 h-4 text-tactical-accent" />
-            <span>1. DYNAMIC RESCUE ROUTING SOLVER</span>
-          </button>
+      <div className="mx-auto w-full max-w-[1400px] flex-1 space-y-5 px-4 py-6 md:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h1 className="font-display text-[28px] font-semibold leading-tight tracking-[-0.6px] text-ink">
+              Safe routes
+            </h1>
+            <p className="mt-1 text-[13px] text-ink-subtle">
+              Hazard-aware evacuation paths and shelter capacity.
+            </p>
+          </div>
 
-          <button
-            onClick={() => setActiveTab('shelters')}
-            className={`px-4 py-2 rounded-xl font-bold flex items-center gap-2 border transition-all cyber-card-depth ${
-              activeTab === 'shelters'
-                ? 'glass-panel border-emerald-400 text-emerald-300 neon-glow-cyan'
-                : 'glass-panel border-tactical-700 text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Building2 className="w-4 h-4 text-emerald-400" />
-            <span>2. SAFE ZONES & RELIEF CAMPS DIRECTORY</span>
-          </button>
+          <div className="flex items-center gap-0.5 rounded-md border border-hairline bg-surface-1 p-0.5">
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              const active = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-1.5 rounded px-2.5 py-1.5 text-[13px] transition-colors ${
+                    active
+                      ? 'bg-surface-3 text-ink'
+                      : 'text-ink-subtle hover:bg-surface-2 hover:text-ink-muted'
+                  }`}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="glass-panel p-4 md:p-6 rounded-2xl border-tactical-700/80 shadow-2xl">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
-            >
-              {activeTab === 'routing' ? <DynamicRoutingView /> : <SafeZonesView />}
-            </motion.div>
-          </AnimatePresence>
+        <div className="rounded-lg border border-hairline bg-surface-1 p-4 md:p-5">
+          {activeTab === 'routing' ? <DynamicRoutingView /> : <SafeZonesView />}
         </div>
       </div>
     </main>

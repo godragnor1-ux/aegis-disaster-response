@@ -45,8 +45,8 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
         className: 'custom-origin-icon',
         html: `
           <div class="relative flex items-center justify-center">
-            <span class="animate-ping absolute inline-flex h-9 w-9 rounded-full bg-cyan-400 opacity-80"></span>
-            <div class="relative w-8 h-8 rounded-full bg-cyan-950 border-2 border-cyan-400 text-cyan-300 flex items-center justify-center shadow-[0_0_15px_#00f0ff] font-black text-xs">
+            <span class="animate-ping absolute inline-flex h-9 w-9 rounded-full bg-surface-2 opacity-80"></span>
+            <div class="relative w-8 h-8 rounded-full bg-surface-2 border-2 border-hairline-strong text-ink flex items-center justify-center  font-black text-xs">
               📍
             </div>
           </div>
@@ -59,7 +59,7 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
         html: `
           <div class="relative flex items-center justify-center">
             <span class="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-emerald-500 opacity-75"></span>
-            <div class="relative w-9 h-9 rounded-xl bg-emerald-950 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center shadow-[0_0_20px_#10b981] font-bold text-sm">
+            <div class="relative w-9 h-9 rounded-xl bg-emerald-950 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center  font-bold text-sm">
               🏥
             </div>
           </div>
@@ -70,7 +70,7 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
       waypoint: L.divIcon({
         className: 'custom-wp-icon',
         html: `
-          <div class="w-3.5 h-3.5 rounded-full bg-cyan-400 border-2 border-white shadow-[0_0_10px_#00f0ff]"></div>
+          <div class="w-3.5 h-3.5 rounded-full bg-surface-2 border-2 border-white "></div>
         `,
         iconSize: [14, 14],
         iconAnchor: [7, 7],
@@ -78,7 +78,7 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
       blockedPoint: L.divIcon({
         className: 'custom-blocked-icon',
         html: `
-          <div class="w-6 h-6 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[10px] text-white font-black shadow-[0_0_15px_#ff003c] animate-pulse">
+          <div class="w-6 h-6 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[10px] text-white font-black  animate-pulse">
             ✕
           </div>
         `,
@@ -191,7 +191,7 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
               }}
             >
               <Popup>
-                <div className="p-1.5 font-mono text-xs text-cyan-300 space-y-1">
+                <div className="p-1.5 font-mono text-xs text-ink space-y-1">
                   <div className="font-bold">✅ SAFEST EVACUATION CORRIDOR</div>
                   <div className="text-slate-200 text-[10px]">
                     Distance: {routeResult.distanceKm} km | ETA: ~{routeResult.etaMinutes} mins
@@ -205,7 +205,7 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
               <Marker key={`nav-wp-${idx}`} position={wp} icon={icons.waypoint}>
                 <Popup>
                   <div className="p-1 font-mono text-xs text-slate-200">
-                    <span className="font-bold text-cyan-300">Waypoint #{idx + 1}</span>: Clear Standoff Corridor
+                    <span className="font-bold text-ink">Waypoint #{idx + 1}</span>: Clear Standoff Corridor
                   </div>
                 </Popup>
               </Marker>
@@ -216,7 +216,7 @@ export const SafeNavigationMap: React.FC<SafeNavigationMapProps> = ({
         {/* 4. Origin & Destination Markers */}
         <Marker position={startCoords} icon={icons.origin}>
           <Popup>
-            <div className="p-1 font-mono text-xs text-cyan-300">
+            <div className="p-1 font-mono text-xs text-ink">
               <div className="font-bold">📍 ORIGIN</div>
               <div className="text-slate-200 text-[11px]">{startName}</div>
             </div>

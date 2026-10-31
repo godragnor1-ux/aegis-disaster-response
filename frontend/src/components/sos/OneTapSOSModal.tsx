@@ -206,7 +206,7 @@ export const OneTapSOSModal: React.FC<OneTapSOSModalProps> = ({ isOpen, onClose 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        className="glass-alert-panel max-w-2xl w-full p-6 rounded-3xl border-2 border-red-500 shadow-[0_0_60px_rgba(255,0,60,0.6)] font-mono relative overflow-hidden"
+        className="glass-alert-panel max-w-2xl w-full p-6 rounded-3xl border-2 border-red-500 font-mono relative overflow-hidden"
       >
         {/* Top Header */}
         <div className="flex items-center justify-between border-b border-red-500/50 pb-3 mb-4">
@@ -229,7 +229,7 @@ export const OneTapSOSModal: React.FC<OneTapSOSModalProps> = ({ isOpen, onClose 
             <div className="relative w-28 h-28 mx-auto flex items-center justify-center">
               <div className="absolute inset-0 rounded-full border-4 border-red-500/40 animate-ping" />
               <div className="absolute inset-2 rounded-full border-2 border-dashed border-red-400 animate-spin" />
-              <div className="w-20 h-20 rounded-full bg-red-950 border-2 border-red-500 flex items-center justify-center shadow-[0_0_30px_#ff003c]">
+              <div className="w-20 h-20 rounded-full bg-red-950 border-2 border-red-500 flex items-center justify-center">
                 <Loader2 className="w-10 h-10 text-red-400 animate-spin" />
               </div>
             </div>
@@ -255,7 +255,7 @@ export const OneTapSOSModal: React.FC<OneTapSOSModalProps> = ({ isOpen, onClose 
                 muted
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-[10px] text-cyan-300 font-mono">
+              <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-[10px] text-ink font-mono">
                 LIVE SENSOR FEED
               </div>
             </div>
@@ -263,7 +263,7 @@ export const OneTapSOSModal: React.FC<OneTapSOSModalProps> = ({ isOpen, onClose 
             {/* Telemetry Status Bar */}
             <div className="flex items-center justify-center gap-4 text-xs text-slate-300">
               <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                <MapPin className="w-3.5 h-3.5 text-ink" />
                 {gpsData ? `${gpsData.lat}° N, ${gpsData.lng}° E` : 'Locking GPS...'}
               </span>
               <span className="flex items-center gap-1">
@@ -291,7 +291,7 @@ export const OneTapSOSModal: React.FC<OneTapSOSModalProps> = ({ isOpen, onClose 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
                 <span className="text-[10px] text-slate-400 uppercase font-bold flex items-center gap-1">
-                  <Camera className="w-3 h-3 text-cyan-400" />
+                  <Camera className="w-3 h-3 text-ink" />
                   Front Photo (Survivor Scan)
                 </span>
                 <div className="h-32 rounded-xl overflow-hidden border border-tactical-600 bg-black">
@@ -314,11 +314,11 @@ export const OneTapSOSModal: React.FC<OneTapSOSModalProps> = ({ isOpen, onClose 
             <div className="p-3 rounded-xl bg-tactical-900 border border-tactical-700 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-slate-300">
               <div>
                 <span className="text-slate-500 block">Latitude:</span>
-                <span className="text-cyan-300 font-bold">{gpsData?.lat || 28.618524}</span>
+                <span className="text-ink font-bold">{gpsData?.lat || 28.618524}</span>
               </div>
               <div>
                 <span className="text-slate-500 block">Longitude:</span>
-                <span className="text-cyan-300 font-bold">{gpsData?.lng || 77.211512}</span>
+                <span className="text-ink font-bold">{gpsData?.lng || 77.211512}</span>
               </div>
               <div>
                 <span className="text-slate-500 block">GPS Accuracy:</span>

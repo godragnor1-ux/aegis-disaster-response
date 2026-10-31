@@ -45,12 +45,12 @@ export const TabNavigation: React.FC = () => {
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={`relative px-3.5 py-2 rounded-lg font-mono text-xs font-semibold flex items-center gap-2 transition-all ${
-                isActive
-                  ? item.isAlert
-                    ? 'bg-red-950/90 text-red-300 border border-red-500 shadow-[0_0_15px_rgba(255,0,60,0.4)]'
-                    : 'bg-tactical-800/90 text-tactical-accent border border-tactical-accent/40 shadow-[0_0_12px_rgba(0,240,255,0.25)]'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-tactical-900/60 border border-transparent'
-              }`}
+ isActive
+ ? item.isAlert
+ ? 'bg-red-950/90 text-red-300 border border-red-500 '
+ : 'bg-tactical-800/90 text-tactical-accent border border-tactical-accent/40 '
+ : 'text-slate-400 hover:text-slate-200 hover:bg-tactical-900/60 border border-transparent'
+ }`}
             >
               <Icon className={`w-4 h-4 ${isActive ? (item.isAlert ? 'text-red-400' : 'text-tactical-accent') : 'text-slate-500'}`} />
               <span>{item.label}</span>
@@ -71,8 +71,8 @@ export const TabNavigation: React.FC = () => {
                 <motion.div
                   layoutId="activeTabIndicator"
                   className={`absolute bottom-0 left-2 right-2 h-0.5 ${
-                    item.isAlert ? 'bg-red-500' : 'bg-tactical-accent'
-                  }`}
+ item.isAlert ? 'bg-red-500' : 'bg-tactical-accent'
+ }`}
                 />
               )}
             </button>

@@ -110,10 +110,10 @@ export const AIDamageScanner: React.FC = () => {
                     handleRunAnalysis(sample.url, sample.type);
                   }}
                   className={`p-2 rounded-lg border text-left flex flex-col gap-1 transition-all ${
-                    selectedImageUrl === sample.url && !customFilePreview
-                      ? 'bg-tactical-800 border-purple-500 text-purple-300 font-bold shadow-md'
-                      : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-slate-200'
-                  }`}
+ selectedImageUrl === sample.url && !customFilePreview
+ ? 'bg-tactical-800 border-purple-500 text-purple-300 font-bold shadow-md'
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-slate-200'
+ }`}
                 >
                   <span className="truncate">{sample.title}</span>
                 </button>
@@ -137,7 +137,7 @@ export const AIDamageScanner: React.FC = () => {
 
               {isAnalyzing && (
                 <div className="absolute inset-0 bg-purple-950/40 backdrop-blur-xs flex flex-col items-center justify-center z-20">
-                  <div className="w-full h-1 bg-purple-400 shadow-[0_0_15px_rgba(168,85,247,1)] animate-bounce" />
+                  <div className="w-full h-1 bg-purple-400 animate-bounce" />
                   <span className="font-mono text-xs text-purple-200 font-bold mt-4 tracking-widest animate-pulse">
                     RUNNING NEURAL VISION INFERENCE (YOLOv8 + RESNET)...
                   </span>
@@ -244,7 +244,7 @@ export const AIDamageScanner: React.FC = () => {
                   <div>
                     <div className="flex justify-between text-[11px] mb-1">
                       <span className="text-slate-400">Flood Inundation Level:</span>
-                      <span className="text-cyan-400 font-bold">~{analysisResult.metrics.floodDepthEstMeters}m</span>
+                      <span className="text-ink font-bold">~{analysisResult.metrics.floodDepthEstMeters}m</span>
                     </div>
                   </div>
 

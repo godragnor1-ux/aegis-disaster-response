@@ -215,8 +215,8 @@ export const SOSBeaconView: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2 font-mono text-xs">
-          <div className="px-2.5 py-1 rounded bg-tactical-900 border border-tactical-700 flex items-center gap-1.5 text-cyan-300">
-            <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="px-2.5 py-1 rounded bg-tactical-900 border border-tactical-700 flex items-center gap-1.5 text-ink">
+            <MapPin className="w-3.5 h-3.5 text-ink" />
             <span>{location.lat}° N, {location.lng}° E</span>
           </div>
 
@@ -231,7 +231,7 @@ export const SOSBeaconView: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="tactical-card p-6 rounded-2xl border-2 border-emerald-500 shadow-[0_0_40px_rgba(16,185,129,0.3)] text-center space-y-4"
+          className="tactical-card p-6 rounded-2xl border-2 border-emerald-500 text-center space-y-4"
         >
           <div className="inline-flex p-4 rounded-full bg-emerald-950/80 border border-emerald-400 text-emerald-400 mb-2">
             <CheckCircle2 className="w-12 h-12 animate-bounce" />
@@ -289,7 +289,7 @@ export const SOSBeaconView: React.FC = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 font-mono text-xs">
                 {[
                   { id: 'trapped', label: '🏚️ Trapped in Debris', color: 'border-red-500' },
-                  { id: 'flood_rising', label: '🌊 Floodwater Rising', color: 'border-cyan-500' },
+                  { id: 'flood_rising', label: '🌊 Floodwater Rising', color: 'border-hairline-strong' },
                   { id: 'fire_smoke', label: '🔥 Fire & Smoke', color: 'border-orange-500' },
                   { id: 'medical', label: '🩺 Medical Trauma', color: 'border-rose-500' },
                   { id: 'elderly_infant', label: '👶 Elderly / Infant', color: 'border-purple-500' },
@@ -414,7 +414,7 @@ export const SOSBeaconView: React.FC = () => {
                 <button
                   type="button"
                   onClick={flipCamera}
-                  className="px-2 py-1 rounded bg-tactical-800 text-[11px] font-mono text-cyan-300 hover:bg-tactical-700 flex items-center gap-1"
+                  className="px-2 py-1 rounded bg-tactical-800 text-[11px] font-mono text-ink hover:bg-tactical-700 flex items-center gap-1"
                 >
                   <RotateCcw className="w-3 h-3" />
                   Flip ({facingMode === 'user' ? 'Front' : 'Rear'})
@@ -439,7 +439,7 @@ export const SOSBeaconView: React.FC = () => {
                     <button
                       type="button"
                       onClick={startCamera}
-                      className="px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-black font-mono font-bold text-xs"
+                      className="px-3 py-1.5 rounded-lg bg-brand hover:bg-brand-hover text-white font-mono font-bold text-xs"
                     >
                       Start Camera
                     </button>
@@ -462,7 +462,7 @@ export const SOSBeaconView: React.FC = () => {
                 {capturedFrontImage && (
                   <div className="relative w-1/2 h-20 rounded border border-tactical-600 overflow-hidden">
                     <img src={capturedFrontImage} alt="Front" className="w-full h-full object-cover" />
-                    <span className="absolute bottom-0 inset-x-0 bg-black/70 text-[9px] text-center font-mono text-cyan-300">
+                    <span className="absolute bottom-0 inset-x-0 bg-black/70 text-[9px] text-center font-mono text-ink">
                       Victim Photo
                     </span>
                   </div>
@@ -470,7 +470,7 @@ export const SOSBeaconView: React.FC = () => {
                 {capturedBackImage && (
                   <div className="relative w-1/2 h-20 rounded border border-tactical-600 overflow-hidden">
                     <img src={capturedBackImage} alt="Rear" className="w-full h-full object-cover" />
-                    <span className="absolute bottom-0 inset-x-0 bg-black/70 text-[9px] text-center font-mono text-cyan-300">
+                    <span className="absolute bottom-0 inset-x-0 bg-black/70 text-[9px] text-center font-mono text-ink">
                       Hazard Photo
                     </span>
                   </div>
@@ -480,7 +480,7 @@ export const SOSBeaconView: React.FC = () => {
 
             <div className="tactical-card p-4 rounded-xl space-y-2">
               <label className="text-xs font-mono font-bold text-slate-300 uppercase flex items-center gap-1.5">
-                <Volume2 className="w-4 h-4 text-cyan-400" />
+                <Volume2 className="w-4 h-4 text-ink" />
                 Voice SOS Audio Dispatch
               </label>
 
@@ -490,10 +490,10 @@ export const SOSBeaconView: React.FC = () => {
                     type="button"
                     onClick={toggleAudioRecording}
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                      isRecordingAudio
-                        ? 'bg-red-600 text-white animate-pulse shadow-[0_0_15px_rgba(255,0,0,0.8)]'
-                        : 'bg-tactical-800 text-slate-300 hover:text-white'
-                    }`}
+ isRecordingAudio
+ ? 'bg-red-600 text-white animate-pulse '
+ : 'bg-tactical-800 text-slate-300 hover:text-white'
+ }`}
                   >
                     {isRecordingAudio ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
                   </button>

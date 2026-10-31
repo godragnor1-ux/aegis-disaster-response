@@ -214,7 +214,7 @@ export const AutoDispatchHUD: React.FC = () => {
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-tactical-800 pb-4">
         <div>
           <h2 className="text-xl font-black text-white uppercase tracking-wider flex items-center gap-2">
-            <Users className="w-6 h-6 text-cyan-400 animate-pulse" />
+            <Users className="w-6 h-6 text-ink animate-pulse" />
             AUTOMATED TASK ASSIGNMENT & FLEET DISPATCH ENGINE
           </h2>
           <p className="text-xs font-mono text-slate-400">
@@ -225,7 +225,7 @@ export const AutoDispatchHUD: React.FC = () => {
         <button
           onClick={handleAutoDispatchAll}
           disabled={isAutoDispatchingAll}
-          className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-black font-mono text-xs flex items-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all"
+          className="px-3 py-1.5 rounded-md bg-brand hover:bg-brand-hover text-white text-[13px] font-medium flex items-center gap-2 transition-all"
         >
           <Zap className="w-4 h-4 text-yellow-300 animate-bounce" />
           <span>{isAutoDispatchingAll ? 'MOBILIZING FLEET...' : '⚡ AUTO-DISPATCH ALL SECTORS'}</span>
@@ -266,21 +266,21 @@ export const AutoDispatchHUD: React.FC = () => {
                     key={beacon._id}
                     onClick={() => setSelectedSOS(beacon)}
                     className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
-                      isSelected
-                        ? 'bg-tactical-800 border-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.3)]'
-                        : 'bg-tactical-900/60 border-tactical-700 hover:border-tactical-600'
-                    }`}
+ isSelected
+ ? 'bg-tactical-800 border-hairline-strong '
+ : 'bg-tactical-900/60 border-tactical-700 hover:border-tactical-600'
+ }`}
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="font-bold text-white text-xs">{beacon.sosId}</span>
                       <span
                         className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
-                          beacon.status === 'pending'
-                            ? 'bg-red-950 text-red-400 border border-red-600 animate-pulse'
-                            : beacon.status === 'assigned' || beacon.status === 'en_route'
-                            ? 'bg-cyan-950 text-cyan-300 border border-cyan-500'
-                            : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
-                        }`}
+ beacon.status === 'pending'
+ ? 'bg-red-950 text-red-400 border border-red-600 animate-pulse'
+ : beacon.status === 'assigned' || beacon.status === 'en_route'
+ ? 'bg-surface-2 text-ink border border-hairline-strong'
+ : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
+ }`}
                       >
                         {beacon.status}
                       </span>
@@ -327,7 +327,7 @@ export const AutoDispatchHUD: React.FC = () => {
                       <button
                         onClick={handleAutoAssignOptimal}
                         disabled={isDispatching}
-                        className="px-3 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs flex items-center gap-1 shadow-[0_0_10px_#00f0ff] transition-all"
+                        className="px-3 py-1 rounded bg-brand hover:bg-brand-hover text-white font-bold text-xs flex items-center gap-1 transition-all"
                       >
                         <Zap className="w-3.5 h-3.5" />
                         <span>AUTO-ASSIGN OPTIMAL</span>
@@ -346,8 +346,8 @@ export const AutoDispatchHUD: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-slate-300 pt-1 border-t border-tactical-800">
-                  <div>Contact: <span className="text-white font-bold">{selectedSOS.userPhone}</span></div>
-                  <div>Coords: <span className="text-cyan-400 font-bold">{selectedSOS.location.lat}, {selectedSOS.location.lng}</span></div>
+                  <div>Contact: <span className="whitespace-nowrap font-bold text-ink">{selectedSOS.userPhone}</span></div>
+                  <div>Coords: <span className="text-ink font-bold">{selectedSOS.location.lat}, {selectedSOS.location.lng}</span></div>
                   <div>People: <span className="text-white font-bold">{selectedSOS.peopleCount}</span></div>
                   <div>Battery: <span className="text-emerald-400 font-bold">{selectedSOS.batteryLevel}%</span></div>
                 </div>
@@ -357,7 +357,7 @@ export const AutoDispatchHUD: React.FC = () => {
               <div className="tactical-card p-4 rounded-xl space-y-3 font-mono text-xs">
                 <div className="flex items-center justify-between border-b border-tactical-700 pb-2">
                   <h3 className="font-bold text-slate-200 uppercase flex items-center gap-1.5">
-                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                    <Sparkles className="w-4 h-4 text-ink" />
                     AI Evaluated Responder Candidates (Ranked)
                   </h3>
                   <span className="text-[10px] text-slate-400">SCORED BY DISTANCE, SEVERITY & AVAILABILITY</span>
@@ -376,10 +376,10 @@ export const AutoDispatchHUD: React.FC = () => {
                         <div
                           key={resp._id}
                           className={`p-3.5 rounded-xl border transition-all ${
-                            isTopMatch
-                              ? 'bg-tactical-800/90 border-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.25)]'
-                              : 'bg-tactical-900/60 border-tactical-700'
-                          }`}
+ isTopMatch
+ ? 'bg-tactical-800/90 border-hairline-strong '
+ : 'bg-tactical-900/60 border-tactical-700'
+ }`}
                         >
                           {/* Candidate Header */}
                           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -387,7 +387,7 @@ export const AutoDispatchHUD: React.FC = () => {
                               <span className="font-bold text-white text-sm">{resp.callsign}</span>
                               <span className="text-xs text-slate-300">({resp.name})</span>
                               {isTopMatch && (
-                                <span className="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-400 text-[10px] font-bold">
+                                <span className="px-2 py-0.5 rounded bg-surface-2 text-ink border border-hairline-strong text-[10px] font-bold">
                                   ⭐ OPTIMAL MATCH ({metrics.totalPct}%)
                                 </span>
                               )}
@@ -395,12 +395,12 @@ export const AutoDispatchHUD: React.FC = () => {
 
                             <span
                               className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                                resp.status === 'available'
-                                  ? 'bg-emerald-950 text-emerald-300 border border-emerald-500'
-                                  : resp.status === 'en_route'
-                                  ? 'bg-amber-950 text-amber-300 border border-amber-500 animate-pulse'
-                                  : 'bg-slate-800 text-slate-400'
-                              }`}
+ resp.status === 'available'
+ ? 'bg-emerald-950 text-emerald-300 border border-emerald-500'
+ : resp.status === 'en_route'
+ ? 'bg-amber-950 text-amber-300 border border-amber-500 animate-pulse'
+ : 'bg-slate-800 text-slate-400'
+ }`}
                             >
                               {resp.status}
                             </span>
@@ -408,7 +408,7 @@ export const AutoDispatchHUD: React.FC = () => {
 
                           {/* Candidate Role & Vehicle */}
                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] text-slate-300 mb-2.5">
-                            <div>Role: <strong className="text-cyan-300">{resp.role.toUpperCase()}</strong></div>
+                            <div>Role: <strong className="text-ink">{resp.role.toUpperCase()}</strong></div>
                             <div>Vehicle: <strong className="text-slate-200">{resp.vehicleType}</strong></div>
                             <div>Distance: <strong className="text-amber-400">{metrics.distKm} km</strong> (ETA: ~{metrics.etaMinutes}m)</div>
                           </div>
@@ -417,7 +417,7 @@ export const AutoDispatchHUD: React.FC = () => {
                           <div className="space-y-1.5 p-2 rounded-lg bg-tactical-950/80 border border-tactical-800 text-[10px]">
                             <div className="flex items-center justify-between">
                               <span className="text-slate-400">Distance Score (Max 35):</span>
-                              <span className="text-cyan-300 font-bold">{metrics.distanceScore} pts</span>
+                              <span className="text-ink font-bold">{metrics.distanceScore} pts</span>
                             </div>
                             <div className="flex items-center justify-between">
                               <span className="text-slate-400">Severity Factor (Max 25):</span>
@@ -433,7 +433,7 @@ export const AutoDispatchHUD: React.FC = () => {
                             </div>
                             <div className="w-full bg-slate-800 rounded-full h-1.5 mt-1">
                               <div
-                                className="bg-gradient-to-r from-cyan-500 to-emerald-400 h-1.5 rounded-full"
+                                className="bg-severity-ok h-1.5 rounded-full"
                                 style={{ width: `${metrics.totalPct}%` }}
                               />
                             </div>
@@ -449,7 +449,7 @@ export const AutoDispatchHUD: React.FC = () => {
                             <button
                               onClick={() => handleManualDispatch(selectedSOS, resp)}
                               disabled={isDispatching || resp.status === 'busy'}
-                              className="px-4 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs transition-colors flex items-center gap-1.5 shadow"
+                              className="px-4 py-1.5 rounded-lg bg-brand hover:bg-brand-hover text-white font-bold text-xs transition-colors flex items-center gap-1.5 shadow"
                             >
                               <ArrowRight className="w-3.5 h-3.5" />
                               <span>DISPATCH {resp.callsign}</span>
@@ -463,7 +463,7 @@ export const AutoDispatchHUD: React.FC = () => {
             </div>
           ) : (
             <div className="tactical-card p-12 rounded-xl text-center space-y-3 font-mono text-xs text-slate-400">
-              <Users className="w-8 h-8 text-cyan-400 mx-auto" />
+              <Users className="w-8 h-8 text-ink mx-auto" />
               <p>Select a pending SOS distress beacon from the queue on the left to evaluate responder matching.</p>
             </div>
           )}

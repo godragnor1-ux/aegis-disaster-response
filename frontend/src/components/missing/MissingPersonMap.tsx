@@ -46,7 +46,7 @@ export const MissingPersonMap: React.FC<MissingPersonMapProps> = ({ persons, onS
     return L.divIcon({
       className: 'custom-tip-pin',
       html: `
-        <div class="w-7 h-7 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-[10px] text-black font-black shadow-[0_0_10px_#f59e0b] animate-bounce">
+        <div class="w-7 h-7 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-[10px] text-black font-black  animate-bounce">
           👁️
         </div>
       `,
@@ -103,7 +103,7 @@ export const MissingPersonMap: React.FC<MissingPersonMapProps> = ({ persons, onS
                     </div>
 
                     <div className="flex items-center justify-between pt-1 border-t border-slate-700">
-                      <span className="text-[9px] uppercase font-bold text-cyan-400">
+                      <span className="text-[9px] uppercase font-bold text-ink">
                         STATUS: {person.status}
                       </span>
                       <span className="text-[9px] text-slate-500">{person.tips.length} tips</span>

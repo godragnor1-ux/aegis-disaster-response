@@ -91,7 +91,7 @@ export const TacticalDisasterMap: React.FC = () => {
         html: `<div class="relative flex items-center justify-center">
                  <span class="animate-ping absolute inline-flex h-9 w-9 rounded-full bg-red-500 opacity-90"></span>
                  <span class="absolute inline-flex h-6 w-6 rounded-full bg-red-600/40 animate-pulse"></span>
-                 <div class="relative w-7 h-7 rounded-full bg-gradient-to-br from-red-500 to-red-800 border-2 border-white flex items-center justify-center shadow-[0_0_20px_#ff003c] text-[10px] text-white font-black">SOS</div>
+                 <div class="relative w-7 h-7 rounded-full bg-gradient-to-br from-red-500 to-red-800 border-2 border-white flex items-center justify-center  text-[10px] text-white font-black">SOS</div>
                </div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
@@ -100,50 +100,50 @@ export const TacticalDisasterMap: React.FC = () => {
         className: 'custom-sos-yellow',
         html: `<div class="relative flex items-center justify-center">
                  <span class="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-amber-500 opacity-80"></span>
-                 <div class="relative w-6 h-6 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center shadow-[0_0_15px_#ffb703] text-[10px] text-black font-black">!</div>
+                 <div class="relative w-6 h-6 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center  text-[10px] text-black font-black">!</div>
                </div>`,
         iconSize: [32, 32],
         iconAnchor: [16, 16],
       }),
       responderBoat: L.divIcon({
         className: 'custom-resp-boat',
-        html: `<div class="w-9 h-9 rounded-xl bg-cyan-950 border-2 border-cyan-400 text-cyan-300 flex items-center justify-center shadow-[0_0_15px_#00f0ff] font-bold text-sm">⛵</div>`,
+        html: `<div class="w-9 h-9 rounded-xl bg-surface-2 border-2 border-hairline-strong text-ink flex items-center justify-center  font-bold text-sm">⛵</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
       }),
       responderMedic: L.divIcon({
         className: 'custom-resp-medic',
-        html: `<div class="w-9 h-9 rounded-xl bg-emerald-950 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center shadow-[0_0_15px_#00e676] font-bold text-sm">🚑</div>`,
+        html: `<div class="w-9 h-9 rounded-xl bg-emerald-950 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center  font-bold text-sm">🚑</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
       }),
       responderFire: L.divIcon({
         className: 'custom-resp-fire',
-        html: `<div class="w-9 h-9 rounded-xl bg-orange-950 border-2 border-orange-400 text-orange-300 flex items-center justify-center shadow-[0_0_15px_#f97316] font-bold text-sm">🚒</div>`,
+        html: `<div class="w-9 h-9 rounded-xl bg-orange-950 border-2 border-orange-400 text-orange-300 flex items-center justify-center  font-bold text-sm">🚒</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
       }),
       responderK9: L.divIcon({
         className: 'custom-resp-k9',
-        html: `<div class="w-9 h-9 rounded-xl bg-purple-950 border-2 border-purple-400 text-purple-300 flex items-center justify-center shadow-[0_0_15px_#b5179e] font-bold text-sm">🐕</div>`,
+        html: `<div class="w-9 h-9 rounded-xl bg-purple-950 border-2 border-purple-400 text-purple-300 flex items-center justify-center  font-bold text-sm">🐕</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
       }),
       responderDrone: L.divIcon({
         className: 'custom-resp-drone',
-        html: `<div class="w-9 h-9 rounded-xl bg-sky-950 border-2 border-sky-400 text-sky-300 flex items-center justify-center shadow-[0_0_15px_#38bdf8] font-bold text-sm">🛸</div>`,
+        html: `<div class="w-9 h-9 rounded-xl bg-sky-950 border-2 border-sky-400 text-sky-300 flex items-center justify-center  font-bold text-sm">🛸</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
       }),
       shelter: L.divIcon({
         className: 'custom-shelter-icon',
-        html: `<div class="w-9 h-9 rounded-xl bg-emerald-950 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.7)] font-bold text-sm">🏥</div>`,
+        html: `<div class="w-9 h-9 rounded-xl bg-emerald-950 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center  font-bold text-sm">🏥</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
       }),
       waypoint: L.divIcon({
         className: 'custom-waypoint-icon',
-        html: `<div class="w-4 h-4 rounded-full bg-cyan-400 border-2 border-white shadow-[0_0_12px_#00f0ff]"></div>`,
+        html: `<div class="w-4 h-4 rounded-full bg-surface-2 border-2 border-white "></div>`,
         iconSize: [16, 16],
         iconAnchor: [8, 8],
       }),
@@ -219,10 +219,10 @@ export const TacticalDisasterMap: React.FC = () => {
     <div className="relative w-full h-[calc(100vh-140px)] min-h-[640px] rounded-2xl overflow-hidden border border-tactical-700/80 shadow-2xl bg-tactical-950">
       {/* Top Left: Map Tile Provider & Tactical Layer HUD */}
       <div className="absolute top-4 left-4 z-[1000] flex flex-col gap-2 max-w-xs">
-        <div className="glass-panel p-3.5 rounded-2xl border border-cyan-500/40 shadow-2xl backdrop-blur-xl space-y-3 font-mono text-xs">
+        <div className="glass-panel p-3.5 rounded-2xl border border-hairline-strong shadow-2xl backdrop-blur-xl space-y-3 font-mono text-xs">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-tactical-700/60 pb-2">
-            <div className="flex items-center gap-2 text-cyan-300 font-bold">
+            <div className="flex items-center gap-2 text-ink font-bold">
               <Layers className="w-4 h-4 text-tactical-accent" />
               <span>GIS RADAR CONTROLS</span>
             </div>
@@ -236,40 +236,40 @@ export const TacticalDisasterMap: React.FC = () => {
               <button
                 onClick={() => setTileProvider('carto_dark')}
                 className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
-                  tileProvider === 'carto_dark'
-                    ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
-                    : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
-                }`}
+ tileProvider === 'carto_dark'
+ ? 'bg-surface-2 border-hairline-strong text-ink'
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+ }`}
               >
                 🌌 Tactical Dark
               </button>
               <button
                 onClick={() => setTileProvider('satellite')}
                 className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
-                  tileProvider === 'satellite'
-                    ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
-                    : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
-                }`}
+ tileProvider === 'satellite'
+ ? 'bg-surface-2 border-hairline-strong text-ink'
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+ }`}
               >
                 🛰️ Satellite Recon
               </button>
               <button
                 onClick={() => setTileProvider('osm')}
                 className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
-                  tileProvider === 'osm'
-                    ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
-                    : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
-                }`}
+ tileProvider === 'osm'
+ ? 'bg-surface-2 border-hairline-strong text-ink'
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+ }`}
               >
                 🗺️ Street View
               </button>
               <button
                 onClick={() => setTileProvider('mapbox_dark')}
                 className={`p-1.5 rounded-lg border text-center font-bold transition-all ${
-                  tileProvider === 'mapbox_dark'
-                    ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
-                    : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
-                }`}
+ tileProvider === 'mapbox_dark'
+ ? 'bg-surface-2 border-hairline-strong text-ink'
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+ }`}
               >
                 ✨ Mapbox HD
               </button>
@@ -281,8 +281,8 @@ export const TacticalDisasterMap: React.FC = () => {
             <button
               onClick={() => setShowSOS(!showSOS)}
               className={`p-1.5 rounded-lg flex items-center justify-between border transition-all ${
-                showSOS ? 'bg-red-950 border-red-500 text-red-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
-              }`}
+ showSOS ? 'bg-red-950 border-red-500 text-red-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
+ }`}
             >
               <span>🚨 SOS ({sosBeacons.length})</span>
               <span>{showSOS ? 'ON' : 'OFF'}</span>
@@ -291,8 +291,8 @@ export const TacticalDisasterMap: React.FC = () => {
             <button
               onClick={() => setShowResponders(!showResponders)}
               className={`p-1.5 rounded-lg flex items-center justify-between border transition-all ${
-                showResponders ? 'bg-cyan-950 border-cyan-500 text-cyan-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
-              }`}
+ showResponders ? 'bg-surface-2 border-hairline-strong text-ink font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
+ }`}
             >
               <span>🚁 Fleet ({responders.length})</span>
               <span>{showResponders ? 'ON' : 'OFF'}</span>
@@ -301,8 +301,8 @@ export const TacticalDisasterMap: React.FC = () => {
             <button
               onClick={() => setShowFloods(!showFloods)}
               className={`p-1.5 rounded-lg flex items-center justify-between border transition-all ${
-                showFloods ? 'bg-blue-950 border-blue-500 text-blue-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
-              }`}
+ showFloods ? 'bg-blue-950 border-blue-500 text-blue-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
+ }`}
             >
               <span>🌊 Floods</span>
               <span>{showFloods ? 'ON' : 'OFF'}</span>
@@ -311,8 +311,8 @@ export const TacticalDisasterMap: React.FC = () => {
             <button
               onClick={() => setShowFires(!showFires)}
               className={`p-1.5 rounded-lg flex items-center justify-between border transition-all ${
-                showFires ? 'bg-orange-950 border-orange-500 text-orange-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
-              }`}
+ showFires ? 'bg-orange-950 border-orange-500 text-orange-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
+ }`}
             >
               <span>🔥 Fires</span>
               <span>{showFires ? 'ON' : 'OFF'}</span>
@@ -321,8 +321,8 @@ export const TacticalDisasterMap: React.FC = () => {
             <button
               onClick={() => setShowShelters(!showShelters)}
               className={`p-1.5 rounded-lg flex items-center justify-between border transition-all ${
-                showShelters ? 'bg-emerald-950 border-emerald-500 text-emerald-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
-              }`}
+ showShelters ? 'bg-emerald-950 border-emerald-500 text-emerald-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
+ }`}
             >
               <span>🏥 Shelters</span>
               <span>{showShelters ? 'ON' : 'OFF'}</span>
@@ -331,8 +331,8 @@ export const TacticalDisasterMap: React.FC = () => {
             <button
               onClick={() => setShowDynamicRoute(!showDynamicRoute)}
               className={`p-1.5 rounded-lg flex items-center justify-between border transition-all ${
-                showDynamicRoute ? 'bg-tactical-800 border-cyan-400 text-cyan-300 font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
-              }`}
+ showDynamicRoute ? 'bg-tactical-800 border-hairline-strong text-ink font-bold' : 'bg-tactical-900 border-tactical-800 text-slate-500'
+ }`}
             >
               <span>🛣️ Safe Routes</span>
               <span>{showDynamicRoute ? 'ON' : 'OFF'}</span>
@@ -343,10 +343,10 @@ export const TacticalDisasterMap: React.FC = () => {
           <button
             onClick={() => setIsSimulatingFleet(!isSimulatingFleet)}
             className={`w-full py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all ${
-              isSimulatingFleet
-                ? 'bg-amber-500 text-black border-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.6)] animate-pulse'
-                : 'bg-tactical-800 hover:bg-tactical-700 text-cyan-300 border-cyan-500/40'
-            }`}
+ isSimulatingFleet
+ ? 'bg-amber-500 text-black border-amber-300 animate-pulse'
+ : 'bg-tactical-800 hover:bg-tactical-700 text-ink border-hairline-strong'
+ }`}
           >
             {isSimulatingFleet ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
             <span>{isSimulatingFleet ? 'LIVE GPS FLEET SIM ACTIVE' : '⚡ SIMULATE FLEET MOVEMENT'}</span>
@@ -356,9 +356,9 @@ export const TacticalDisasterMap: React.FC = () => {
 
       {/* Top Right: Route & Hazard Telemetry HUD */}
       <div className="absolute top-4 right-4 z-[1000] hidden sm:flex flex-col gap-2 max-w-sm">
-        <div className="glass-panel p-3.5 rounded-2xl border border-cyan-500/40 font-mono text-xs text-slate-300 shadow-2xl backdrop-blur-xl space-y-2">
+        <div className="glass-panel p-3.5 rounded-2xl border border-hairline-strong font-mono text-xs text-slate-300 shadow-2xl backdrop-blur-xl space-y-2">
           <div className="flex items-center justify-between border-b border-tactical-700 pb-1.5">
-            <div className="flex items-center gap-1.5 text-cyan-400 font-bold">
+            <div className="flex items-center gap-1.5 text-ink font-bold">
               <Compass className="w-4 h-4 text-tactical-accent animate-spin" />
               <span>DYNAMIC ROUTE SOLVER</span>
             </div>
@@ -374,7 +374,7 @@ export const TacticalDisasterMap: React.FC = () => {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-slate-400">Diverted Evacuation Path:</span>
-              <span className="text-cyan-300 font-bold">✅ 4.2 km (ETA ~8 min)</span>
+              <span className="text-ink font-bold">✅ 4.2 km (ETA ~8 min)</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-slate-400">Target Safe Haven:</span>
@@ -420,7 +420,7 @@ export const TacticalDisasterMap: React.FC = () => {
               }}
             >
               <Popup>
-                <div className="p-1 font-mono text-xs text-cyan-300 space-y-1">
+                <div className="p-1 font-mono text-xs text-ink space-y-1">
                   <div className="font-bold">✅ AI COMPUTED SAFE EVACUATION ROUTE</div>
                   <div className="text-slate-300 text-[11px]">Distance: 4.2 km | Bypasses active flood barrier</div>
                 </div>
@@ -450,7 +450,7 @@ export const TacticalDisasterMap: React.FC = () => {
               <Marker key={`wp-${idx}`} position={wp} icon={icons.waypoint}>
                 <Popup>
                   <div className="p-1 font-mono text-xs text-slate-200">
-                    <span className="font-bold text-cyan-300">Waypoint {idx + 1}</span>: Clear corridor
+                    <span className="font-bold text-ink">Waypoint {idx + 1}</span>: Clear corridor
                   </div>
                 </Popup>
               </Marker>
@@ -476,12 +476,12 @@ export const TacticalDisasterMap: React.FC = () => {
                 >
                   <Popup>
                     <div className="p-1.5 space-y-1.5 font-mono text-xs">
-                      <div className="font-bold text-cyan-400 flex items-center gap-1">
+                      <div className="font-bold text-ink flex items-center gap-1">
                         <Droplets className="w-3.5 h-3.5" />
                         <span>{inc.title}</span>
                       </div>
                       <div className="text-slate-300 text-[11px]">{inc.description}</div>
-                      <div className="text-cyan-300 font-bold">
+                      <div className="text-ink font-bold">
                         Water Level: {inc.hazardMetrics.waterDepthMeters}m | Severity: {inc.severity.toUpperCase()}
                       </div>
                     </div>
@@ -635,7 +635,7 @@ export const TacticalDisasterMap: React.FC = () => {
                   <div className="flex items-center gap-1.5 pt-1">
                     <button
                       onClick={() => setActiveTab('routing')}
-                      className="w-full py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs transition-colors"
+                      className="w-full py-1.5 rounded-lg bg-brand hover:bg-brand-hover text-white font-bold text-xs transition-colors"
                     >
                       Route Rescue
                     </button>
@@ -661,9 +661,9 @@ export const TacticalDisasterMap: React.FC = () => {
             >
               <Popup>
                 <div className="p-2 space-y-1.5 font-mono text-xs">
-                  <div className="font-bold text-cyan-400 text-sm">{resp.callsign}</div>
+                  <div className="font-bold text-ink text-sm">{resp.callsign}</div>
                   <div className="text-slate-200">{resp.name}</div>
-                  <div className="text-[11px] text-slate-400">Role: <strong className="text-cyan-300">{resp.role.toUpperCase()}</strong></div>
+                  <div className="text-[11px] text-slate-400">Role: <strong className="text-ink">{resp.role.toUpperCase()}</strong></div>
                   <div className="text-[11px] text-slate-400">Vehicle: <strong className="text-slate-200">{resp.vehicleType}</strong></div>
                   <div className="flex items-center gap-1 text-[11px]">
                     <span className="text-slate-400">Status:</span>

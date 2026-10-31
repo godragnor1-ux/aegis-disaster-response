@@ -75,10 +75,10 @@ export const MeshNetworkView: React.FC = () => {
         <button
           onClick={() => setIsOfflineMode(!isOfflineMode)}
           className={`px-4 py-2 rounded-lg font-bold text-xs flex items-center gap-2 border transition-all ${
-            isOfflineMode
-              ? 'bg-amber-950 border-amber-500 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.4)]'
-              : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
-          }`}
+ isOfflineMode
+ ? 'bg-amber-950 border-amber-500 text-amber-300 '
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+ }`}
         >
           <WifiOff className="w-4 h-4" />
           <span>{isOfflineMode ? 'OFFLINE MESH MODE ACTIVE' : 'SWITCH TO OFFLINE MESH'}</span>
@@ -98,7 +98,7 @@ export const MeshNetworkView: React.FC = () => {
 
             <div className="p-4 rounded-xl bg-tactical-900/80 border border-tactical-700 space-y-4">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-                <div className="p-3 rounded-xl bg-red-950/80 border-2 border-red-500 text-center w-full sm:w-28 space-y-1 shadow-[0_0_12px_rgba(255,0,60,0.3)]">
+                <div className="p-3 rounded-xl bg-red-950/80 border-2 border-red-500 text-center w-full sm:w-28 space-y-1">
                   <div className="text-[10px] text-red-400 font-bold">NODE 0 (ORIGIN)</div>
                   <div className="text-white font-bold text-xs">VICTIM PWA</div>
                   <div className="text-[9px] text-slate-400">RSSI -68 dBm</div>
@@ -107,7 +107,7 @@ export const MeshNetworkView: React.FC = () => {
                 <div className="text-amber-400 font-bold rotate-90 sm:rotate-0 animate-pulse">➔</div>
 
                 <div className="p-3 rounded-xl bg-tactical-800 border border-tactical-600 text-center w-full sm:w-28 space-y-1">
-                  <div className="text-[10px] text-cyan-400 font-bold">RELAY ALPHA</div>
+                  <div className="text-[10px] text-ink font-bold">RELAY ALPHA</div>
                   <div className="text-white font-bold text-xs">LoRa Node 1</div>
                   <div className="text-[9px] text-slate-400">BLE 5.0 Mesh</div>
                 </div>
@@ -115,14 +115,14 @@ export const MeshNetworkView: React.FC = () => {
                 <div className="text-amber-400 font-bold rotate-90 sm:rotate-0 animate-pulse">➔</div>
 
                 <div className="p-3 rounded-xl bg-tactical-800 border border-tactical-600 text-center w-full sm:w-28 space-y-1">
-                  <div className="text-[10px] text-cyan-400 font-bold">RELAY BRAVO</div>
+                  <div className="text-[10px] text-ink font-bold">RELAY BRAVO</div>
                   <div className="text-white font-bold text-xs">Drone Mesh 2</div>
                   <div className="text-[9px] text-slate-400">915MHz LoRa</div>
                 </div>
 
                 <div className="text-amber-400 font-bold rotate-90 sm:rotate-0 animate-pulse">➔</div>
 
-                <div className="p-3 rounded-xl bg-emerald-950/80 border-2 border-emerald-500 text-center w-full sm:w-28 space-y-1 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+                <div className="p-3 rounded-xl bg-emerald-950/80 border-2 border-emerald-500 text-center w-full sm:w-28 space-y-1">
                   <div className="text-[10px] text-emerald-400 font-bold">BASE GATEWAY</div>
                   <div className="text-white font-bold text-xs">COMMAND HQ</div>
                   <div className="text-[9px] text-emerald-300">SATCOM LINK</div>
@@ -133,7 +133,7 @@ export const MeshNetworkView: React.FC = () => {
             <button
               onClick={handleSimulateMeshRelay}
               disabled={isSimulatingPacket}
-              className="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
             >
               <Zap className="w-4 h-4" />
               <span>{isSimulatingPacket ? 'BROADCASTING PACKET THROUGH MESH...' : 'TRANSMIT TEST MESH SOS PACKET'}</span>
@@ -144,7 +144,7 @@ export const MeshNetworkView: React.FC = () => {
             <div className="tactical-card p-4 rounded-xl space-y-3 text-xs">
               <div className="flex items-center justify-between border-b border-tactical-700 pb-2">
                 <span className="font-bold text-white">PACKET RELAY TELEMETRY ({meshLogs.packetId})</span>
-                <span className="text-cyan-400 font-bold">Total Latency: {meshLogs.totalLatencyMs}ms</span>
+                <span className="text-ink font-bold">Total Latency: {meshLogs.totalLatencyMs}ms</span>
               </div>
 
               <div className="space-y-2">
@@ -164,7 +164,7 @@ export const MeshNetworkView: React.FC = () => {
 
                     <div className="flex items-center gap-3">
                       <span className="text-slate-400">{hop.protocol}</span>
-                      <span className="text-cyan-300 font-bold">{hop.latencyMs}ms</span>
+                      <span className="text-ink font-bold">{hop.latencyMs}ms</span>
                       <span className="px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-300 text-[9px] font-bold">
                         {hop.status}
                       </span>
@@ -205,7 +205,7 @@ export const MeshNetworkView: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">SMS Dispatch Number:</span>
-                <span className="text-cyan-300 font-bold">911 / +1-555-RESQ-SMS</span>
+                <span className="text-ink font-bold">911 / +1-555-RESQ-SMS</span>
               </div>
             </div>
 

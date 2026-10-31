@@ -73,20 +73,20 @@ export const SafeZonesView: React.FC = () => {
             <div
               key={shelter._id}
               className={`tactical-card p-5 rounded-2xl border transition-all flex flex-col justify-between ${
-                isFull
-                  ? 'border-red-500/60 shadow-[0_0_20px_rgba(255,0,0,0.2)]'
-                  : 'border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
-              }`}
+ isFull
+ ? 'border-red-500/60 '
+ : 'border-emerald-500/40 '
+ }`}
             >
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                        isFull
-                          ? 'bg-red-950 text-red-300 border border-red-600'
-                          : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
-                      }`}
+ isFull
+ ? 'bg-red-950 text-red-300 border border-red-600'
+ : 'bg-emerald-950 text-emerald-300 border border-emerald-500'
+ }`}
                     >
                       {shelter.status.toUpperCase()}
                     </span>
@@ -99,7 +99,7 @@ export const SafeZonesView: React.FC = () => {
                     {shelter.name}
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                    <MapPin className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                    <MapPin className="w-3.5 h-3.5 text-ink flex-shrink-0" />
                     <span className="truncate">{shelter.location.address}</span>
                   </div>
                 </div>
@@ -115,8 +115,8 @@ export const SafeZonesView: React.FC = () => {
                   <div className="w-full bg-slate-800 rounded-full h-2">
                     <div
                       className={`h-2 rounded-full transition-all ${
-                        occupancyPct > 85 ? 'bg-red-500' : occupancyPct > 60 ? 'bg-yellow-400' : 'bg-emerald-400'
-                      }`}
+ occupancyPct > 85 ? 'bg-red-500' : occupancyPct > 60 ? 'bg-yellow-400' : 'bg-emerald-400'
+ }`}
                       style={{ width: `${Math.min(100, occupancyPct)}%` }}
                     />
                   </div>
@@ -124,7 +124,7 @@ export const SafeZonesView: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div className="p-2.5 rounded-lg bg-tactical-900/60 border border-tactical-700 flex items-center gap-2">
-                    <Droplets className="w-4 h-4 text-cyan-400" />
+                    <Droplets className="w-4 h-4 text-ink" />
                     <div>
                       <div className="text-[10px] text-slate-400">Clean Water</div>
                       <div className="font-bold text-white">{shelter.supplies.waterLiters.toLocaleString()} L</div>
@@ -190,7 +190,7 @@ export const SafeZonesView: React.FC = () => {
 
                 <button
                   onClick={() => setActiveTab('routing')}
-                  className="w-full py-1.5 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-cyan-300 text-xs font-bold transition-colors flex items-center justify-center gap-1 border border-tactical-700"
+                  className="w-full py-1.5 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-ink text-xs font-bold transition-colors flex items-center justify-center gap-1 border border-tactical-700"
                 >
                   <span>Route Evacuation Path</span>
                   <ArrowRight className="w-3.5 h-3.5" />

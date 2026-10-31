@@ -90,10 +90,10 @@ export const RealtimeActivityHUD: React.FC = () => {
     <div className="flex items-center gap-3 font-mono text-xs">
       {/* Connection Status Pill */}
       <div className={`px-2.5 py-1 rounded-full border flex items-center gap-1.5 shadow-md ${
-        isConnected
-          ? 'bg-emerald-950/80 border-emerald-500/80 text-emerald-300'
-          : 'bg-red-950/80 border-red-500/80 text-red-300 animate-pulse'
-      }`}>
+ isConnected
+ ? 'bg-emerald-950/80 border-emerald-500/80 text-emerald-300'
+ : 'bg-red-950/80 border-red-500/80 text-red-300 animate-pulse'
+ }`}>
         <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-400 animate-ping' : 'bg-red-400'}`} />
         <span className="font-bold text-[10px]">
           {isConnected ? `WS LIVE (${latencyMs}ms)` : 'WS RECONNECTING...'}
@@ -102,7 +102,7 @@ export const RealtimeActivityHUD: React.FC = () => {
 
       {/* Real-time Ticker */}
       <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-xl bg-tactical-900/90 border border-tactical-700/80 text-[11px] text-slate-300 max-w-md truncate">
-        <Activity className="w-3.5 h-3.5 text-cyan-400 animate-pulse flex-shrink-0" />
+        <Activity className="w-3.5 h-3.5 text-ink animate-pulse flex-shrink-0" />
         <span className="truncate">{recentEvents[0]}</span>
       </div>
 
@@ -110,9 +110,9 @@ export const RealtimeActivityHUD: React.FC = () => {
       <button
         onClick={handleSimulateBurst}
         title="Simulate real-time GPS telemetry update"
-        className="px-2 py-1 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-cyan-300 border border-cyan-500/40 text-[10px] font-bold flex items-center gap-1 transition-all"
+        className="px-2 py-1 rounded-lg bg-tactical-800 hover:bg-tactical-700 text-ink border border-hairline-strong text-[10px] font-bold flex items-center gap-1 transition-all"
       >
-        <Zap className="w-3 h-3 text-cyan-400" />
+        <Zap className="w-3 h-3 text-ink" />
         <span className="hidden sm:inline">PING FLEET</span>
       </button>
     </div>

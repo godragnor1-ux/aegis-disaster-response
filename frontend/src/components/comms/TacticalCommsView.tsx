@@ -267,7 +267,7 @@ export const TacticalCommsView: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsBroadcasting(!isBroadcasting)}
-            className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-2 shadow-[0_0_20px_rgba(255,0,60,0.5)] border border-red-400 transition-all"
+            className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-2 border border-red-400 transition-all"
           >
             <BellRing className="w-4 h-4 animate-bounce" />
             <span>CIVIL DEFENSE BROADCAST</span>
@@ -327,7 +327,7 @@ export const TacticalCommsView: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-2.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(255,0,0,0.8)] flex items-center justify-center gap-2"
+            className="w-full py-2.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2"
           >
             <BellRing className="w-4 h-4" />
             <span>🚨 TRANSMIT LIVE SIREN ALERT TO ALL ACTIVE USERS</span>
@@ -342,7 +342,7 @@ export const TacticalCommsView: React.FC = () => {
           {/* Channel Selector */}
           <div className="tactical-card p-4 rounded-xl space-y-3 text-xs">
             <h3 className="font-bold text-slate-200 uppercase flex items-center gap-1.5 border-b border-tactical-700 pb-2">
-              <Radio className="w-4 h-4 text-cyan-400" />
+              <Radio className="w-4 h-4 text-ink" />
               1. Radio Net Channels
             </h3>
 
@@ -358,14 +358,14 @@ export const TacticalCommsView: React.FC = () => {
                   key={chan.id}
                   onClick={() => joinChannel(chan.id)}
                   className={`w-full p-2.5 rounded-xl border text-left transition-all ${
-                    activeChannel === chan.id
-                      ? 'bg-tactical-800 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_12px_rgba(0,240,255,0.25)]'
-                      : 'bg-tactical-900/60 border-tactical-700 text-slate-400 hover:text-slate-200'
-                  }`}
+ activeChannel === chan.id
+ ? 'bg-tactical-800 border-hairline-strong text-ink font-bold '
+ : 'bg-tactical-900/60 border-tactical-700 text-slate-400 hover:text-slate-200'
+ }`}
                 >
                   <div className="text-xs text-white flex items-center justify-between">
                     <span>{chan.label}</span>
-                    {activeChannel === chan.id && <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />}
+                    {activeChannel === chan.id && <span className="w-2 h-2 rounded-full bg-surface-2 animate-ping" />}
                   </div>
                   <div className="text-[10px] text-slate-400 mt-0.5">{chan.desc}</div>
                 </button>
@@ -374,13 +374,13 @@ export const TacticalCommsView: React.FC = () => {
           </div>
 
           {/* Walkie-Talkie Mode (PTT) Panel */}
-          <div className="tactical-card p-4 rounded-xl space-y-3 text-xs border border-cyan-500/40 shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+          <div className="tactical-card p-4 rounded-xl space-y-3 text-xs border border-hairline-strong">
             <div className="flex items-center justify-between border-b border-tactical-700 pb-2">
-              <h3 className="font-bold text-cyan-300 uppercase flex items-center gap-1.5">
-                <Radio className="w-4 h-4 text-cyan-400" />
+              <h3 className="font-bold text-ink uppercase flex items-center gap-1.5">
+                <Radio className="w-4 h-4 text-ink" />
                 2. Walkie-Talkie (PTT)
               </h3>
-              <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-600 font-bold">
+              <span className="text-[10px] px-2 py-0.5 rounded bg-surface-2 text-ink border border-hairline-strong font-bold">
                 {radioFrequency} MHz
               </span>
             </div>
@@ -398,10 +398,10 @@ export const TacticalCommsView: React.FC = () => {
                     key={f.freq}
                     onClick={() => setRadioFrequency(f.freq as typeof radioFrequency)}
                     className={`py-1 rounded border text-center font-bold transition-all ${
-                      radioFrequency === f.freq
-                        ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
-                        : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
-                    }`}
+ radioFrequency === f.freq
+ ? 'bg-surface-2 border-hairline-strong text-ink'
+ : 'bg-tactical-900 border-tactical-700 text-slate-400 hover:text-white'
+ }`}
                   >
                     {f.name}
                   </button>
@@ -417,13 +417,13 @@ export const TacticalCommsView: React.FC = () => {
                 onTouchStart={() => startRecording('ptt')}
                 onTouchEnd={() => stopRecording('ptt')}
                 className={`w-full py-4 rounded-2xl font-black text-sm flex flex-col items-center justify-center gap-1 transition-all select-none border ${
-                  isPTTHolding
-                    ? 'bg-red-600 text-white border-red-300 shadow-[0_0_30px_#ff003c] scale-98 animate-pulse'
-                    : 'bg-gradient-to-br from-tactical-800 to-cyan-950 hover:from-tactical-700 hover:to-cyan-900 text-cyan-300 border-cyan-500/50 shadow-[0_0_15px_rgba(0,240,255,0.2)] active:scale-95'
-                }`}
+ isPTTHolding
+ ? 'bg-red-600 text-white border-red-300 scale-98 animate-pulse'
+ : 'bg-gradient-to-br from-tactical-800 to-surface-1 hover:from-tactical-700 hover:to-surface-1 text-ink border-hairline-strong active:scale-95'
+ }`}
               >
                 <div className="flex items-center gap-2">
-                  <Mic className={`w-5 h-5 ${isPTTHolding ? 'animate-bounce text-white' : 'text-cyan-400'}`} />
+                  <Mic className={`w-5 h-5 ${isPTTHolding ? 'animate-bounce text-white' : 'text-ink'}`} />
                   <span>{isPTTHolding ? `TRANSMITTING (${recordingDuration}s)...` : 'HOLD TO TALK (PTT)'}</span>
                 </div>
                 <span className="text-[10px] font-normal text-slate-300">
@@ -452,10 +452,10 @@ export const TacticalCommsView: React.FC = () => {
                 }
               }}
               className={`w-full py-3 rounded-xl font-black text-xs flex items-center justify-center gap-2 border transition-all ${
-                isRecordingVoiceSOS
-                  ? 'bg-red-600 text-white border-white animate-pulse shadow-[0_0_25px_#ff003c]'
-                  : 'bg-red-950/70 hover:bg-red-900 text-red-300 border-red-500/60'
-              }`}
+ isRecordingVoiceSOS
+ ? 'bg-red-600 text-white border-white animate-pulse '
+ : 'bg-red-950/70 hover:bg-red-900 text-red-300 border-red-500/60'
+ }`}
             >
               <Mic className="w-4 h-4 text-red-400" />
               <span>
@@ -476,7 +476,7 @@ export const TacticalCommsView: React.FC = () => {
               </div>
               <div className="flex items-center gap-3 text-slate-400 text-[10px]">
                 <span className="flex items-center gap-1">
-                  <Wifi className="w-3 h-3 text-cyan-400" />
+                  <Wifi className="w-3 h-3 text-ink" />
                   <span>LOW-BANDWIDTH MODE</span>
                 </span>
                 <span>{channelMessages.length} Messages</span>
@@ -500,22 +500,22 @@ export const TacticalCommsView: React.FC = () => {
                     <div
                       key={msg._id || idx}
                       className={`p-3 rounded-xl border text-xs transition-all ${
-                        isAlert
-                          ? 'bg-red-950/80 border-red-500 text-red-200 shadow-[0_0_15px_rgba(255,0,0,0.3)]'
-                          : msg.senderRole === 'responder' || msg.senderRole === 'commander'
-                          ? 'bg-cyan-950/40 border-cyan-500/50 text-slate-200'
-                          : 'bg-tactical-900/80 border-tactical-700 text-slate-200'
-                      }`}
+ isAlert
+ ? 'bg-red-950/80 border-red-500 text-red-200 '
+ : msg.senderRole === 'responder' || msg.senderRole === 'commander'
+ ? 'bg-surface-2 border-hairline-strong text-slate-200'
+ : 'bg-tactical-900/80 border-tactical-700 text-slate-200'
+ }`}
                     >
                       {/* Message Metadata Header */}
                       <div className="flex items-center justify-between mb-1.5 text-[10px]">
                         <div className="flex items-center gap-1.5">
-                          <span className="font-bold text-cyan-300">{msg.senderName}</span>
+                          <span className="font-bold text-ink">{msg.senderName}</span>
                           <span className="px-1.5 py-0.2 rounded bg-tactical-800 text-slate-400 uppercase font-bold text-[9px]">
                             {msg.senderRole}
                           </span>
                           {msg.frequencyMHz && (
-                            <span className="px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-400 border border-cyan-600 text-[9px]">
+                            <span className="px-1.5 py-0.2 rounded bg-surface-2 text-ink border border-hairline-strong text-[9px]">
                               {msg.frequencyMHz} MHz
                             </span>
                           )}
@@ -537,12 +537,12 @@ export const TacticalCommsView: React.FC = () => {
                         <div className="mt-2 p-2 rounded-lg bg-black/60 border border-tactical-700 flex items-center justify-between">
                           <button
                             onClick={() => playAudio(msg._id, msg.audioBase64!)}
-                            className="px-3 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-[11px] flex items-center gap-1 transition-colors"
+                            className="px-3 py-1 rounded bg-brand hover:bg-brand-hover text-white font-bold text-[11px] flex items-center gap-1 transition-colors"
                           >
                             {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
                             <span>{isPlaying ? 'PLAYING...' : `PLAY AUDIO (${msg.audioDurationSeconds || 3}s)`}</span>
                           </button>
-                          <div className="flex items-center gap-1 text-[10px] text-cyan-400 font-mono">
+                          <div className="flex items-center gap-1 text-[10px] text-ink font-mono">
                             <Activity className="w-3.5 h-3.5 animate-pulse" />
                             <span>16kbps OPUS</span>
                           </div>
@@ -562,11 +562,11 @@ export const TacticalCommsView: React.FC = () => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder={`Transmitting on ${activeChannel.toUpperCase()}...`}
-                className="flex-1 px-4 py-2.5 rounded-xl bg-tactical-900 border border-tactical-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-tactical-900 border border-tactical-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-hairline-strong"
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs flex items-center gap-1.5 transition-colors shadow-[0_0_12px_#00f0ff]"
+                className="px-5 py-2.5 rounded-xl bg-brand hover:bg-brand-hover text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Send</span>

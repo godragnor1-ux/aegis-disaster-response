@@ -108,7 +108,7 @@ export const DynamicRoutingView: React.FC = () => {
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-tactical-800 pb-4">
         <div>
           <h2 className="text-xl font-black text-white uppercase tracking-wider flex items-center gap-2">
-            <Navigation className="w-6 h-6 text-cyan-400 animate-pulse" />
+            <Navigation className="w-6 h-6 text-ink animate-pulse" />
             SAFE ZONE NAVIGATION & HAZARD-AVOIDANCE ROUTING
           </h2>
           <p className="text-xs text-slate-400">
@@ -118,7 +118,7 @@ export const DynamicRoutingView: React.FC = () => {
 
         <button
           onClick={handleFindNearestSafeHaven}
-          className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400 transition-all"
+          className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs flex items-center gap-2 border border-emerald-400 transition-all"
         >
           <Sparkles className="w-4 h-4 text-yellow-300 animate-bounce" />
           <span>🎯 FIND NEAREST SAFE HAVEN</span>
@@ -131,7 +131,7 @@ export const DynamicRoutingView: React.FC = () => {
           {/* 1. Route Parameters Card */}
           <div className="tactical-card p-4 rounded-xl space-y-4 text-xs">
             <h3 className="font-bold text-slate-200 uppercase flex items-center gap-1.5 border-b border-tactical-700 pb-2">
-              <Compass className="w-4 h-4 text-cyan-400" />
+              <Compass className="w-4 h-4 text-ink" />
               1. Route Parameters
             </h3>
 
@@ -150,10 +150,10 @@ export const DynamicRoutingView: React.FC = () => {
                       key={m.id}
                       onClick={() => setMode(m.id as typeof mode)}
                       className={`p-2.5 rounded-xl border flex flex-col items-center gap-1 text-center transition-all ${
-                        mode === m.id
-                          ? 'bg-tactical-800 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_12px_rgba(0,240,255,0.3)]'
-                          : 'bg-tactical-900/60 border-tactical-700 text-slate-400 hover:text-slate-200'
-                      }`}
+ mode === m.id
+ ? 'bg-tactical-800 border-hairline-strong text-ink font-bold '
+ : 'bg-tactical-900/60 border-tactical-700 text-slate-400 hover:text-slate-200'
+ }`}
                     >
                       <Icon className="w-4 h-4" />
                       <span className="text-[10px]">{m.label}</span>
@@ -169,7 +169,7 @@ export const DynamicRoutingView: React.FC = () => {
               <select
                 value={startPoint}
                 onChange={(e) => setStartPoint(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-white focus:outline-none focus:border-cyan-400 text-xs font-bold"
+                className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-white focus:outline-none focus:border-hairline-strong text-xs font-bold"
               >
                 <option value="SOS-2026-8812">📍 SOS-8812: Sector 4 Flood Balcony</option>
                 <option value="SOS-2026-9041">📍 SOS-9041: Pragati Metro Collapse</option>
@@ -183,7 +183,7 @@ export const DynamicRoutingView: React.FC = () => {
               <select
                 value={destinationPoint}
                 onChange={(e) => setDestinationPoint(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-white focus:outline-none focus:border-cyan-400 text-xs font-bold"
+                className="w-full px-3 py-2 rounded-xl bg-tactical-900 border border-tactical-700 text-white focus:outline-none focus:border-hairline-strong text-xs font-bold"
               >
                 <option value="shelter-1">🏥 Indira Memorial Sports Complex (Safe Haven)</option>
                 <option value="shelter-2">🏥 AIIMS Field Hospital Delta</option>
@@ -194,7 +194,7 @@ export const DynamicRoutingView: React.FC = () => {
             <button
               onClick={handleComputeRoute}
               disabled={isLoading}
-              className="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs uppercase tracking-wider transition-colors shadow-[0_0_15px_#00f0ff]"
+              className="w-full py-2.5 rounded-xl bg-brand hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-wider transition-colors"
             >
               {isLoading ? 'CALCULATING SAFE PATH...' : 'RE-CALCULATE EVACUATION ROUTE'}
             </button>
@@ -209,7 +209,7 @@ export const DynamicRoutingView: React.FC = () => {
             <div className="space-y-1.5 text-[11px] text-slate-300">
               <div className="flex items-center justify-between">
                 <span>🌊 Yamuna River Flash Flood:</span>
-                <span className="text-cyan-400 font-bold">2.4m Depth (Bypassed)</span>
+                <span className="text-ink font-bold">2.4m Depth (Bypassed)</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>🔥 Connaught Gas Pipeline Fire:</span>
@@ -228,17 +228,17 @@ export const DynamicRoutingView: React.FC = () => {
           {/* Telemetry Metric Cards */}
           {routeResult && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="tactical-card p-3.5 rounded-xl border border-cyan-500/40">
+              <div className="tactical-card p-3.5 rounded-xl border border-hairline-strong">
                 <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-                  <Milestone className="w-3.5 h-3.5 text-cyan-400" />
+                  <Milestone className="w-3.5 h-3.5 text-ink" />
                   TOTAL DISTANCE
                 </div>
                 <div className="text-xl font-bold text-white mt-1">
-                  {routeResult.distanceKm} <span className="text-xs text-cyan-400 font-normal">km</span>
+                  {routeResult.distanceKm} <span className="text-xs text-ink font-normal">km</span>
                 </div>
               </div>
 
-              <div className="tactical-card p-3.5 rounded-xl border border-cyan-500/40">
+              <div className="tactical-card p-3.5 rounded-xl border border-hairline-strong">
                 <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-yellow-400" />
                   ESTIMATED TIME (ETA)
@@ -263,8 +263,8 @@ export const DynamicRoutingView: React.FC = () => {
           {/* Interactive GIS Navigation Map */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs text-slate-400">
-              <span className="font-bold text-cyan-300 flex items-center gap-1.5">
-                <Navigation className="w-4 h-4 text-cyan-400" />
+              <span className="font-bold text-ink flex items-center gap-1.5">
+                <Navigation className="w-4 h-4 text-ink" />
                 TACTICAL HAZARD-AVOIDANCE GIS ROUTE MAP
               </span>
               <span className="text-[10px] text-emerald-400 font-bold">
@@ -287,14 +287,14 @@ export const DynamicRoutingView: React.FC = () => {
           {routeResult?.turnByTurn && (
             <div className="tactical-card p-4 rounded-xl space-y-3 text-xs">
               <h4 className="font-bold text-slate-200 uppercase flex items-center gap-1.5 border-b border-tactical-700 pb-2">
-                <CheckCircle className="w-4 h-4 text-cyan-400" />
+                <CheckCircle className="w-4 h-4 text-ink" />
                 Turn-by-Turn Safe Clearance Guidance
               </h4>
 
               <div className="space-y-2">
                 {routeResult.turnByTurn.map((step, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-2 rounded-lg bg-tactical-900/60 border border-tactical-800 text-xs">
-                    <span className="w-5 h-5 rounded-full bg-cyan-950 border border-cyan-400 text-cyan-300 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    <span className="w-5 h-5 rounded-full bg-surface-2 border border-hairline-strong text-ink flex items-center justify-center font-bold text-[10px] flex-shrink-0">
                       {idx + 1}
                     </span>
                     <div className="flex-1 text-slate-300">{step.instruction}</div>

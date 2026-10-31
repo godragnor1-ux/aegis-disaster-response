@@ -6,93 +6,81 @@ import { EmergencyBroadcastBanner } from '@/components/common/EmergencyBroadcast
 import { FuturisticNavbar } from '@/components/common/FuturisticNavbar';
 import { DynamicTacticalMap } from '@/components/map/DynamicTacticalMap';
 import { useEmergency } from '@/context/EmergencyContext';
-import {
-  Map,
-  Layers,
-  Flame,
-  Droplets,
-  AlertTriangle,
-  RadioTower,
-  ShieldCheck,
-  Compass,
-  Activity,
-  Maximize2
-} from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Panel, PanelHeader, StatusLabel } from '@/components/ui/primitives';
+import { Droplets, Flame, Building2 } from 'lucide-react';
+
+const HAZARDS = [
+  {
+    icon: Droplets,
+    title: 'Hydrological surge',
+    body: 'Yamuna Sector 4 breach active at 2.4 m depth. Swift-water craft hold priority along the Ridge corridor.',
+  },
+  {
+    icon: Flame,
+    title: 'Thermal perimeter',
+    body: 'Connaught gas main rupture at 580 °C, smoke plume 850 m south-west. Respiratory gear mandatory on approach.',
+  },
+  {
+    icon: Building2,
+    title: 'Structural collapse',
+    body: 'Pragati Metro basement failure, damage index 94%. USAR seismic listening running on 30-minute cycles.',
+  },
+];
 
 export default function LiveMapPage() {
-  const { incidents, sosBeacons, responders, shelters } = useEmergency();
+  const { sosBeacons, responders } = useEmergency();
   const [activeHazardFilter, setActiveHazardFilter] = useState<string>('all');
 
   const pendingSOS = sosBeacons.filter((b) => b.status === 'pending');
 
   return (
-    <main className="flex-1 flex flex-col min-h-screen hologram-grid relative">
+    <main className="flex min-h-screen flex-1 flex-col">
       <Header />
       <EmergencyBroadcastBanner />
       <FuturisticNavbar />
 
-      <div className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-6 space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-tactical-800 pb-3">
+      <div className="mx-auto w-full max-w-[1400px] flex-1 space-y-5 px-4 py-6 md:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-black text-white uppercase tracking-wider font-mono flex items-center gap-2.5">
-              <Map className="w-6 h-6 text-tactical-accent animate-pulse" />
-              LIVE TACTICAL DISASTER MAP & GIS HEATMAP
+            <h1 className="font-display text-[28px] font-semibold leading-tight tracking-[-0.6px] text-ink">
+              Live map
             </h1>
-            <p className="text-xs font-mono text-slate-400">
-              SATELLITE RADAR SWEEP, POLYGON DANGER ZONES, PULSING SOS BEACONS & LIVE RESCUE FLEET
+            <p className="mt-1 text-[13px] text-ink-subtle">
+              Hazard polygons, SOS beacons and responder positions on one basemap.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-xs">
-            <div className="glass-panel px-3 py-1 rounded-lg border-red-500/40 text-red-400 font-bold flex items-center gap-1.5 neon-glow-red">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-              <span>{pendingSOS.length} SOS ACTIVE</span>
-            </div>
-
-            <div className="glass-panel px-3 py-1 rounded-lg border-cyan-500/40 text-cyan-300 font-bold flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-cyan-400" />
-              <span>{responders.length} UNITS ONLINE</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="rounded-md border border-hairline bg-surface-1 px-2.5 py-1.5">
+              <StatusLabel tone={pendingSOS.length ? 'critical' : 'neutral'}>
+                {pendingSOS.length} open SOS
+              </StatusLabel>
+            </span>
+            <span className="rounded-md border border-hairline bg-surface-1 px-2.5 py-1.5">
+              <StatusLabel tone={responders.length ? 'ok' : 'neutral'}>
+                {responders.length} units on grid
+              </StatusLabel>
+            </span>
           </div>
         </div>
 
-        {/* 3D Glass Tactical Map Container */}
-        <div className="glass-panel p-2.5 rounded-2xl border-cyan-500/30 overflow-hidden shadow-2xl relative">
+        <div className="overflow-hidden rounded-lg border border-hairline bg-surface-1">
           <DynamicTacticalMap />
         </div>
 
-        {/* Bottom Telemetry Strip */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
-          <div className="glass-panel p-3.5 rounded-xl space-y-2 border-cyan-500/30">
-            <div className="font-bold text-cyan-300 flex items-center gap-1.5">
-              <Droplets className="w-4 h-4 text-cyan-400" />
-              <span>HYDROLOGICAL SURGE POLYGON</span>
-            </div>
-            <p className="text-slate-300 text-[11px] leading-relaxed">
-              Yamuna River Sector 4 breach is active at 2.4m depth. Swift-water rescue crafts have priority routing along Ridge corridor.
-            </p>
-          </div>
-
-          <div className="glass-panel p-3.5 rounded-xl space-y-2 border-orange-500/30">
-            <div className="font-bold text-orange-400 flex items-center gap-1.5">
-              <Flame className="w-4 h-4 text-orange-500" />
-              <span>THERMAL COMBUSTION PERIMETER</span>
-            </div>
-            <p className="text-slate-300 text-[11px] leading-relaxed">
-              Connaught gas line rupture core at 580°C with toxic smoke cloud extending 850m south-west. Respiratory gear mandatory.
-            </p>
-          </div>
-
-          <div className="glass-panel p-3.5 rounded-xl space-y-2 border-yellow-500/30">
-            <div className="font-bold text-yellow-400 flex items-center gap-1.5">
-              <AlertTriangle className="w-4 h-4 text-yellow-500" />
-              <span>STRUCTURAL COLLAPSE ZONE</span>
-            </div>
-            <p className="text-slate-300 text-[11px] leading-relaxed">
-              Pragati Metro multi-tier basement failure (94% damage index). USAR seismic listening active on 30-minute cycles.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+          {HAZARDS.map((h) => {
+            const Icon = h.icon;
+            return (
+              <Panel key={h.title}>
+                <div className="flex items-center gap-2">
+                  <Icon className="h-4 w-4 text-ink-subtle" />
+                  <h2 className="font-display text-[14px] font-medium text-ink">{h.title}</h2>
+                </div>
+                <p className="mt-2 text-[12px] leading-relaxed text-ink-subtle">{h.body}</p>
+              </Panel>
+            );
+          })}
         </div>
       </div>
     </main>
