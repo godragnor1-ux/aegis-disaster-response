@@ -14,10 +14,19 @@ const resolvedSocketUrl = (
 ).replace(/\/+$/, '');
 
 /** @type {import('next').NextConfig} */
+const isStaticExport = process.env.STATIC_EXPORT === '1';
+// For GitHub Pages project sites the app is served from /<repo>/, so every
+// asset path needs that prefix. Empty for Vercel / local dev.
+const basePath = isStaticExport ? (process.env.PAGES_BASE_PATH || '') : '';
+
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  ...(isStaticExport
+    ? { output: 'export', trailingSlash: true, basePath: basePath || undefined, assetPrefix: basePath || undefined }
+    : {}),
   images: {
+    unoptimized: isStaticExport,
     remotePatterns: [
       {
         protocol: 'https',
